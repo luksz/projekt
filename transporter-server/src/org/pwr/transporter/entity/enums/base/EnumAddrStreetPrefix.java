@@ -1,4 +1,4 @@
-package org.pwr.transporter.entity.base.enums;
+package org.pwr.transporter.entity.enums.base;
 
 
 import javax.persistence.Column;

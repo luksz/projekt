@@ -1,5 +1,5 @@
 
-package org.pwr.transporter.core.hb;
+package org.pwr.transporter.server.core.hb;
 
 
 import java.io.File;

@@ -6,7 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 import org.pwr.transporter.entity.GenericEntity;
-import org.pwr.transporter.entity.base.enums.EnumAddrStreetPrefix;
+import org.pwr.transporter.entity.enums.base.EnumAddrStreetPrefix;
 
 
 
