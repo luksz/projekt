@@ -11,7 +11,7 @@
 		class="org.springframework.orm.hibernate4.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="hibernateProperties">
-			<value>/</value>
+			<value>/hibernate.cfg.xml</value>
 		</property>
 		<property name="annotatedClasses">
 			<list>
@@ -28,7 +28,7 @@
 		</property>
 	</bean>
 	
-	<bean id="" class="">
+	<bean id="hello2" class="org.pwr.transporter.server.Hello">
 	</bean>
 	
 </beans>
