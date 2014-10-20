@@ -26,7 +26,7 @@ import javax.persistence.InheritanceType;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class GenericEntity implements Serializable {
+public abstract class GenericEntity implements Serializable {
 
     private static final long serialVersionUID = 4669201971220084206L;
 

@@ -25,9 +25,9 @@
 
     <!-- General description of your web application -->
 
-    <display-name>Invoicer</display-name>
+    <display-name>transporter</display-name>
     <description>
-      
+    	Complex application for business
     </description>
 
 
@@ -83,11 +83,11 @@
     -->
 
     <servlet>
-      <servlet-name>invoice-server</servlet-name>
+      <servlet-name>transporter</servlet-name>
       <description>
         
       </description>
-      <servlet-class>com.mycompany.mypackage.ControllerServlet</servlet-class>
+      <servlet-class>org.pwr.transporter.server.web.controllers.MainController</servlet-class>
 <!--       <init-param> -->
 <!--         <param-name>listOrders</param-name> -->
 <!--         <param-value>com.mycompany.myactions.ListOrdersAction</param-value> -->
@@ -120,8 +120,8 @@
     -->
 
     <servlet-mapping>
-      <servlet-name>invoice-server</servlet-name>
-      <url-pattern>*.do</url-pattern>
+      <servlet-name>transporter</servlet-name>
+      <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
 

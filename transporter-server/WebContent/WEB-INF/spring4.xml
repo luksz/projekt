@@ -28,5 +28,7 @@
 		</property>
 	</bean>
 	
+	<bean id="" class="">
+	</bean>
 	
 </beans>
