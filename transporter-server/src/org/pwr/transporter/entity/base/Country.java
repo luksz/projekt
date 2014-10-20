@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.entity.base;
 
 
@@ -16,10 +17,10 @@ import org.pwr.transporter.entity.GenericEntity;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.2
  */
 @Entity
-@Table(name = "Country")
+@Table(name = "country")
 public class Country extends GenericEntity {
 
     private static final long serialVersionUID = 2649860719507812031L;
@@ -27,7 +28,7 @@ public class Country extends GenericEntity {
     // *******************************************************************************************************************************
     // ****** Fields
     // *******************************************************************************************************************************
-    @Column(name = "name")
+    @Column(name = "name", nullable = false)
     private String name;
 
     @Column(name = "nativeName")

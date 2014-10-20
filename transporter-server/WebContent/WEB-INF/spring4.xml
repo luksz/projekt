@@ -10,6 +10,9 @@
 	<bean id="hibernate3AnnotatedSessionFactory"
 		class="org.springframework.orm.hibernate4.annotation.AnnotationSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">
+			<value>/</value>
+		</property>
 		<property name="annotatedClasses">
 			<list>
 				<value>org.pwr.transporter.entity.GenericEntity</value>
@@ -17,6 +20,8 @@
         		<value>org.pwr.transporter.entity.base.Address</value>
         		<value>org.pwr.transporter.entity.base.Country</value>
         		<value>org.pwr.transporter.entity.base.Person</value>
+        		<value>org.pwr.transporter.entity.base.Emplyee</value>
+        		<value>org.pwr.transporter.entity.base.Customer</value>
         		
 		        <value>org.pwr.transporter.entity.base.enums.EnumAddrStreetPrefix</value>
 			</list>

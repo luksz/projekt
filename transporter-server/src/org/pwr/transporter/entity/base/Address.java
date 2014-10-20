@@ -1,8 +1,11 @@
+
 package org.pwr.transporter.entity.base;
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.pwr.transporter.entity.GenericEntity;
@@ -45,6 +48,10 @@ public class Address extends GenericEntity {
 
     @Column(name = "postCity")
     private String postCity;
+
+    @ManyToOne
+    @JoinColumn(name = "id")
+    private Customer student;
 
 
     // *******************************************************************************************************************************

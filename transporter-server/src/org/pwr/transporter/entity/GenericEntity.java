@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.entity;
 
 
@@ -10,7 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Table;
 
 
 
@@ -25,8 +25,7 @@ import javax.persistence.Table;
  * @version 0.0.4
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "GenericEntity")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class GenericEntity implements Serializable {
 
     private static final long serialVersionUID = 4669201971220084206L;

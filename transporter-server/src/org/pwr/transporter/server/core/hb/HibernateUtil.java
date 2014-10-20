@@ -31,7 +31,7 @@ public class HibernateUtil {
         try {
             // Create Configuration
             File test = new File("");
-            File fileConfig = new File("cnf/hibernate.cfg.xml");
+            File fileConfig = new File("hibernate.cfg.xml");
             Configuration cnf = new Configuration();
             cnf.configure(fileConfig);
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(cnf.getProperties()).build();

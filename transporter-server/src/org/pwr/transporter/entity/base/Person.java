@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.entity.base;
 
 
@@ -5,8 +6,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
 
 import org.pwr.transporter.entity.GenericEntity;
 
@@ -14,7 +13,7 @@ import org.pwr.transporter.entity.GenericEntity;
 
 /**
  * <pre>
- *     Base for other classes using person.
+ *     Base for other classes using person e.g. Customer.
  * </pre>
  * <hr/>
  * 
@@ -22,9 +21,7 @@ import org.pwr.transporter.entity.GenericEntity;
  * @version 0.0.2
  */
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@Table(name = "person")
-@PrimaryKeyJoinColumn(name = "id")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Person extends GenericEntity {
 
     /**  */
@@ -35,6 +32,12 @@ public class Person extends GenericEntity {
 
     @Column(name = "surname", nullable = false)
     private String surname;
+
+    @Column(name = "baseAdderss")
+    private Address baseAddress;
+
+    @Column(name = "contactAdderss")
+    private Address contacAddress;
 
 
     public Person() {
