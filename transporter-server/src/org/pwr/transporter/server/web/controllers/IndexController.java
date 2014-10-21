@@ -1,9 +1,6 @@
 package org.pwr.transporter.server.web.controllers;
 
 
-import java.io.IOException;
-
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -11,7 +8,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
 
@@ -25,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * @version 0.0.1
  */
 @Controller
-public class IndexController extends HttpServlet {
+public class IndexController {// extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
 
@@ -40,18 +36,23 @@ public class IndexController extends HttpServlet {
     }
 
 
-    @ResponseBody
+    // @ResponseBody
     @RequestMapping(value = "/index", method = RequestMethod.GET)
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public String doGet(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("Get index");
+        return "index";
     }
 
-
-    /**
-     * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-     */
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
-    }
+    // protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // System.out.println("Get index");
+    // }
+    //
+    //
+    // /**
+    // * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+    // */
+    // protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    // // TODO Auto-generated method stub
+    // }
 
 }
