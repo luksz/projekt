@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.server.web.controllers;
 
 
@@ -11,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 
 
@@ -24,7 +25,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @version 0.0.1
  */
 @Controller
-@RequestMapping("/index.html")
 public class IndexController extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
@@ -35,15 +35,15 @@ public class IndexController extends HttpServlet {
      */
     public IndexController() {
         super();
+        System.out.println("Create index controller");
         // TODO Auto-generated constructor stub
     }
 
 
-    /**
-     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-     */
+    @ResponseBody
+    @RequestMapping(value = "/index", method = RequestMethod.GET)
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // TODO Auto-generated method stub
+        System.out.println("Get index");
     }
 
 

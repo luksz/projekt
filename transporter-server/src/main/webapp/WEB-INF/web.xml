@@ -15,74 +15,31 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 -->
-
-<web-app xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
-          http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
-    version="3.0">
-
-
-    <!-- General description of your web application -->
-
-    <display-name>transporter</display-name>
-    <description>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
+  <display-name>transporter</display-name>
+  <description>
     	Complex application for sales, transport and warehouse business
     </description>
-
-    <context-param>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>/WEB-INF/transporter-servlet.xml</param-value>
-    </context-param>
-
-	<listener> 
-		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
-	</listener>
-<!-- 	<filter>
-		<filter-name>RequestCharacterEncoding</filter-name>
-		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
-		<init-param>
-			<param-name>encoding</param-name>
-			<param-value>UTF-8</param-value>
-		</init-param>
-		<init-param>
-			<param-name>forceEncoding</param-name>
-			<param-value>true</param-value>
-		</init-param>
-	</filter>
-	<filter-mapping>
-		<filter-name>RequestCharacterEncoding</filter-name>
-		<url-pattern>*.html</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>RequestCharacterEncoding</filter-name>
-		<url-pattern>*.pdf</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>RequestCharacterEncoding</filter-name>
-		<url-pattern>*.txt</url-pattern>
-	</filter-mapping>
-	<filter-mapping>
-		<filter-name>RequestCharacterEncoding</filter-name>
-		<url-pattern>*.jsp</url-pattern>
-	</filter-mapping> -->
-	
-    <servlet>
-      	<servlet-name>transporter</servlet-name>
-		<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-    	<load-on-startup>1</load-on-startup>
-  	</servlet>
-	<servlet-mapping>
-    	<servlet-name>transporter</servlet-name>
-		<url-pattern>/*</url-pattern>
-	</servlet-mapping>
-
-<!-- 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
-	</welcome-file-list> -->
-
-    <session-config>
-      <session-timeout>30</session-timeout>    <!-- 30 minutes -->
-    </session-config>
-
-
+  <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>/WEB-INF/transporter-servlet.xml</param-value>
+  </context-param>
+  <listener>
+    <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>transporter</servlet-name>
+    <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>transporter</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+  <welcome-file-list>
+  	<welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  <session-config>
+    <session-timeout>30</session-timeout>
+  </session-config>
 </web-app>
