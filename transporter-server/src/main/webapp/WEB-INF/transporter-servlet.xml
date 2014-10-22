@@ -63,6 +63,6 @@
     <bean id="test" class="main.webapp.Test">
     </bean>
    
-	<!-- <import resource="beans.xml"/> -->
+	<import resource="beans.xml"/>
 	
 </beans>

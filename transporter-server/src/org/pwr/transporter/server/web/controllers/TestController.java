@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.server.web.controllers;
 
 
@@ -11,6 +12,8 @@ import org.pwr.transporter.server.web.services.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
@@ -30,7 +33,9 @@ public class TestController { // extends HttpServlet {
     }
 
 
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String doGet(Model model, HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("Test get");
         List<Customer> customerList = customerService.getList();
         model.addAttribute("customerList", customerList);
         return "test";

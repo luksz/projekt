@@ -2,7 +2,9 @@
 package org.pwr.transporter.server.dao.impl;
 
 
+import org.pwr.transporter.entity.base.Customer;
 import org.pwr.transporter.server.dao.CustomerDAO;
+import org.springframework.stereotype.Repository;
 
 
 
@@ -15,6 +17,12 @@ import org.pwr.transporter.server.dao.CustomerDAO;
  * @author x0r
  * @version 0.0.1
  */
-public class CustomerDAOImpl extends GenericDAOImpl implements CustomerDAO {
+@Repository
+public class CustomerDAOImpl extends GenericDAOImpl<Customer> implements CustomerDAO {
+
+    public CustomerDAOImpl() {
+        System.out.println("Creating Customer dao impl");
+        setEntityClass(Customer.class);
+    }
 
 }

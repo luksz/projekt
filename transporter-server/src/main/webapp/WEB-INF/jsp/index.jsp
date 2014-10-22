@@ -8,6 +8,6 @@
 </head>
 <body>
 	<h1> Index </h1>
-	Test
+	<a href="/transporter-server/test">Test</a>
 </body>
 </html>

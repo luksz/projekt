@@ -2,7 +2,6 @@
 package org.pwr.transporter.server.dao;
 
 
-import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 
@@ -21,9 +20,9 @@ import org.pwr.transporter.entity.GenericEntity;
  * @param <T>
  * @param <ID>
  */
-public interface GenericDAO<T extends GenericEntity, ID extends Serializable> {
+public interface GenericDAO<T extends GenericEntity> {
 
-    T getByID(ID id);
+    T getByID(Long id);
 
 
     List<T> getList();
@@ -32,7 +31,7 @@ public interface GenericDAO<T extends GenericEntity, ID extends Serializable> {
     List<T> search(Map<String, Object> parameterMap);
 
 
-    ID insert(T entity);
+    Long insert(T entity);
 
 
     void update(T entity);
@@ -41,6 +40,6 @@ public interface GenericDAO<T extends GenericEntity, ID extends Serializable> {
     void delete(T entity);
 
 
-    void deleteById(ID id);
+    void deleteById(Long id);
 
 }

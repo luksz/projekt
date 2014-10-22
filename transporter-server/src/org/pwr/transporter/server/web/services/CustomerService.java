@@ -9,10 +9,13 @@ import org.pwr.transporter.entity.base.Customer;
 import org.pwr.transporter.server.business.CustomerLogic;
 
 
+
 /**
  * <pre>
-   Service for {@link Customer} 
- * </pre><hr/>
+ *    Service for {@link Customer}
+ * </pre>
+ * <hr/>
+ * 
  * @author x0r
  * @version 0.0.1
  */
@@ -23,6 +26,11 @@ public class CustomerService {
 
     public void setCustomerLogic(CustomerLogic customerLogic) {
         this.customerLogic = customerLogic;
+    }
+
+
+    public CustomerService() {
+        System.out.println("Creating Customer service");
     }
 
 
@@ -52,7 +60,7 @@ public class CustomerService {
 
 
     public Customer getById(Long id) {
-        return this.customerLogic.getById(id);
+        return this.customerLogic.getByID(id);
     }
 
 }
