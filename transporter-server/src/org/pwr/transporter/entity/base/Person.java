@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.entity.base;
 
 
@@ -6,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 
 import org.pwr.transporter.entity.GenericEntity;
 
@@ -18,11 +18,11 @@ import org.pwr.transporter.entity.GenericEntity;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.2
+ * @version 0.0.4
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public class Person extends GenericEntity {
+public abstract class Person extends GenericEntity {
 
     /**  */
     private static final long serialVersionUID = 5874687155183652078L;
@@ -33,10 +33,10 @@ public class Person extends GenericEntity {
     @Column(name = "surname", nullable = false)
     private String surname;
 
-    @Column(name = "baseAdderss")
+    @OneToOne(optional = false)
     private Address baseAddress;
 
-    @Column(name = "contactAdderss")
+    @OneToOne(optional = true)
     private Address contacAddress;
 
 

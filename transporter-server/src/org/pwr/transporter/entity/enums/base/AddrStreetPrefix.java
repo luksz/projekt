@@ -16,11 +16,11 @@ import org.pwr.transporter.entity.GenericEntity;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.2
  */
 @Entity
-@Table(name = "EnumAddrStreetPrefix")
-public class EnumAddrStreetPrefix extends GenericEntity {
+@Table(name = "enum_addr_street_prefix")
+public class AddrStreetPrefix extends GenericEntity {
 
     /**  */
     private static final long serialVersionUID = 4257968750152980117L;

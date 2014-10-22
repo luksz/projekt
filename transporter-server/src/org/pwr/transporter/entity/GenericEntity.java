@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.entity;
 
 
@@ -22,7 +21,7 @@ import javax.persistence.InheritanceType;
  * <hr/>
  * 
  * @author W.S
- * @version 0.0.4
+ * @version 0.0.5
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -41,7 +40,7 @@ public abstract class GenericEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "searchKey", nullable = false)
+    @Column(name = "search_key", nullable = false)
     private String searchKey;
 
     @Column(name = "active", nullable = false)

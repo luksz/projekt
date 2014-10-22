@@ -1,10 +1,8 @@
-
 package org.pwr.transporter.entity.base;
 
 
 import java.util.Set;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -37,7 +35,6 @@ public class Customer extends Person {
     // *******************************************************************************************************************************
 
     @OneToMany(mappedBy = TABLE_NAME)
-    @Column(name = "deliveryAdderss")
     Set<Address> deliveryAddress;
 
 

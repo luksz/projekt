@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.entity.base;
 
 
@@ -31,16 +30,16 @@ public class Country extends GenericEntity {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "nativeName")
+    @Column(name = "native_name")
     private String nativeName;
 
     @Column(name = "code")
     private String code;
 
-    @Column(name = "codeEU")
+    @Column(name = "code_eu")
     private String codeEU;
 
-    @Column(name = "ISOCode")
+    @Column(name = "iso_code")
     private String ISOCode;
 
 

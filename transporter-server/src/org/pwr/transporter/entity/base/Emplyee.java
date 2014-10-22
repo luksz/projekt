@@ -1,12 +1,13 @@
-
 package org.pwr.transporter.entity.base;
 
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import org.pwr.transporter.entity.enums.base.EmplyeeType;
 
 
 
@@ -17,7 +18,7 @@ import javax.persistence.Table;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.2
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -27,6 +28,7 @@ public class Emplyee extends Person {
     /**  */
     private static final long serialVersionUID = 8855580555292412125L;
 
-    @Column(name = "driver", nullable = false)
-    private boolean driver;
+    @ManyToOne(optional = false)
+    private EmplyeeType emplyeeType;
+
 }

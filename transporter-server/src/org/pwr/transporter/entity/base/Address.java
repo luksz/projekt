@@ -1,14 +1,14 @@
-
 package org.pwr.transporter.entity.base;
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.pwr.transporter.entity.GenericEntity;
-import org.pwr.transporter.entity.enums.base.EnumAddrStreetPrefix;
+import org.pwr.transporter.entity.enums.base.AddrStreetPrefix;
 
 
 
@@ -19,10 +19,10 @@ import org.pwr.transporter.entity.enums.base.EnumAddrStreetPrefix;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.2
+ * @version 0.0.4
  */
 @Entity
-@Table(name = "Address")
+@Table(name = "address")
 public class Address extends GenericEntity {
 
     private static final long serialVersionUID = 3223188310530625995L;
@@ -30,13 +30,13 @@ public class Address extends GenericEntity {
     // *******************************************************************************************************************************
     // ****** FIELDS
     // *******************************************************************************************************************************
-    @Column(name = "enumAddrStreetPrefix")
-    private EnumAddrStreetPrefix enumAddrStreetPrefix;
+    @OneToOne(optional = false)
+    private AddrStreetPrefix enumAddrStreetPrefix;
 
-    @Column(name = "country")
+    @OneToOne(optional = false)
     private Country country;
 
-    @Column(name = "zipCode")
+    @Column(name = "zip_code")
     private String zipCode;
 
     @Column(name = "local")
@@ -45,23 +45,22 @@ public class Address extends GenericEntity {
     @Column(name = "city")
     private String city;
 
-    @Column(name = "postCity")
+    @Column(name = "post_city")
     private String postCity;
 
-    @ManyToOne
-    // @JoinColumn(name = "id")
+    @ManyToOne(optional = true)
     private Customer customer;
 
 
     // *******************************************************************************************************************************
     // ****** GETTERS & SETTERS
     // *******************************************************************************************************************************
-    public EnumAddrStreetPrefix getEnumAddrStreetPrefix() {
+    public AddrStreetPrefix getEnumAddrStreetPrefix() {
         return enumAddrStreetPrefix;
     }
 
 
-    public void setEnumAddrStreetPrefix(EnumAddrStreetPrefix enumAddrStreetPrefix) {
+    public void setEnumAddrStreetPrefix(AddrStreetPrefix enumAddrStreetPrefix) {
         this.enumAddrStreetPrefix = enumAddrStreetPrefix;
     }
 
