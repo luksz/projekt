@@ -1,10 +1,11 @@
 
-package org.pwr.transporter.entity.base;
+package org.pwr.transporter.entity.warehouse;
 
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
 import org.pwr.transporter.entity.GenericEntity;
 
@@ -12,7 +13,7 @@ import org.pwr.transporter.entity.GenericEntity;
 
 /**
  * <pre>
- *    Base abstract document for all other documents.
+ *    Define warehouse model.
  * </pre>
  * <hr/>
  * 
@@ -21,16 +22,13 @@ import org.pwr.transporter.entity.GenericEntity;
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Document extends GenericEntity {
+@Table(name = "warehouse")
+public class Warehouse extends GenericEntity {
 
     /**  */
-    private static final long serialVersionUID = -2711151678883226411L;
+    private static final long serialVersionUID = 3461170154496460630L;
 
     // *******************************************************************************************************************************
     // ****** FIELDS
-    // *******************************************************************************************************************************
-
-    // *******************************************************************************************************************************
-    // ****** GETTERS AND SETTERS
     // *******************************************************************************************************************************
 }
