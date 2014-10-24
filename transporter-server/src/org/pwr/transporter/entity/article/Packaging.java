@@ -1,21 +1,22 @@
 
-package org.pwr.transporter.entity.warehouse;
+package org.pwr.transporter.entity.article;
 
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import org.pwr.transporter.entity.GenericEntity;
-import org.pwr.transporter.entity.base.Address;
+import org.pwr.transporter.entity.NamesForHibernate;
+import org.pwr.transporter.entity.enums.article.OpaqueType;
 
 
 
 /**
  * <pre>
- *    Define warehouse model.
+ *    Model for ware that are opaque.
  * </pre>
  * <hr/>
  * 
@@ -23,31 +24,33 @@ import org.pwr.transporter.entity.base.Address;
  * @version 0.0.3
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name = "warehouse")
-public class Warehouse extends GenericEntity {
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = "packaging")
+@PrimaryKeyJoinColumn(name = NamesForHibernate.GENERIC_WARE_ID)
+public class Packaging extends GenericWare {
 
     /**  */
-    private static final long serialVersionUID = 3461170154496460630L;
+    private static final long serialVersionUID = -5785461138915317034L;
 
     // *******************************************************************************************************************************
     // ****** FIELDS
     // *******************************************************************************************************************************
 
-    @OneToOne
-    Address address;
+    @ManyToOne
+    private OpaqueType opaqueType;
 
 
     // *******************************************************************************************************************************
-    // ****** GETTERS AND SETTERS
+    // ****** FIELDS
     // *******************************************************************************************************************************
 
-    public Address getAddress() {
-        return this.address;
+    public OpaqueType getOpaqueType() {
+        return this.opaqueType;
     }
 
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setOpaqueType(OpaqueType opaqueType) {
+        this.opaqueType = opaqueType;
     }
+
 }

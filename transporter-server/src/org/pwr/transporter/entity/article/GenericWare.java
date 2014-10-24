@@ -2,14 +2,19 @@
 package org.pwr.transporter.entity.article;
 
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 
-import org.pwr.transporter.entity.GenericEntity;
+import org.pwr.transporter.entity.NamesForHibernate;
 
 
 
@@ -20,14 +25,21 @@ import org.pwr.transporter.entity.GenericEntity;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.2
+ * @version 0.0.4
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Ware extends GenericEntity {
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = NamesForHibernate.GENERIC_WARE)
+public abstract class GenericWare implements Serializable {
 
     /**  */
     private static final long serialVersionUID = -3960765434403545102L;
+
+
+    public GenericWare() {
+        active = true;
+    }
+
 
     // *******************************************************************************************************************************
     // ****** FIELDS
@@ -44,10 +56,52 @@ public abstract class Ware extends GenericEntity {
     @Column(name = "weight")
     private BigDecimal weight;
 
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
+    @Column(name = "search_key", nullable = false)
+    private String searchKey;
+
+    @Column(name = "active", nullable = false)
+    private boolean active;
+
 
     // *******************************************************************************************************************************
     // ****** GETTERS AND SETTERS
     // *******************************************************************************************************************************
+
+    public Long getId() {
+        return id;
+    }
+
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public String getSearchKey() {
+        return searchKey;
+    }
+
+
+    public void setSearchKey(String searchKey) {
+        this.searchKey = searchKey;
+    }
+
+
+    public void setActive(boolean active) {
+        this.active = active;
+    }
+
+
+    public boolean isActive() {
+        return this.active;
+    }
+
+
     public BigDecimal getWidth() {
         return this.width;
     }

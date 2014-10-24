@@ -1,53 +1,66 @@
 
-package org.pwr.transporter.entity.warehouse;
+package org.pwr.transporter.entity.logistic;
 
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.pwr.transporter.entity.GenericEntity;
-import org.pwr.transporter.entity.base.Address;
+import org.pwr.transporter.entity.base.Emplyee;
 
 
 
 /**
  * <pre>
- *    Define warehouse model.
+ *    Tasks for employees.
  * </pre>
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.3
+ * @version 0.0.2
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name = "warehouse")
-public class Warehouse extends GenericEntity {
+@Table(name = "task")
+public class Task extends GenericEntity {
 
     /**  */
-    private static final long serialVersionUID = 3461170154496460630L;
+    private static final long serialVersionUID = -5953617882250989872L;
 
     // *******************************************************************************************************************************
     // ****** FIELDS
     // *******************************************************************************************************************************
 
-    @OneToOne
-    Address address;
+    @ManyToOne(optional = false)
+    private Emplyee emplyee;
+
+    @ManyToOne(optional = false)
+    private Vehicle vehicle;
 
 
     // *******************************************************************************************************************************
     // ****** GETTERS AND SETTERS
     // *******************************************************************************************************************************
 
-    public Address getAddress() {
-        return this.address;
+    public Emplyee getEmplyee() {
+        return this.emplyee;
     }
 
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setEmplyee(Emplyee emplyee) {
+        this.emplyee = emplyee;
+    }
+
+
+    public Vehicle getVehicle() {
+        return this.vehicle;
+    }
+
+
+    public void setVehicle(Vehicle vehicle) {
+        this.vehicle = vehicle;
     }
 }

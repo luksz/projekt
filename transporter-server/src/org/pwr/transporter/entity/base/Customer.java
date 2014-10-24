@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.entity.base;
 
 
@@ -18,7 +19,7 @@ import javax.persistence.Table;
  * <hr/>
  * 
  * @author x0r
- * @version 0.0.2
+ * @version 0.0.3
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

@@ -19,7 +19,7 @@ import org.pwr.transporter.entity.enums.base.EmplyeeType;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.2
+ * @version 0.0.3
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

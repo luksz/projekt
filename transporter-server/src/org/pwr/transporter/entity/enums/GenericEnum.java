@@ -1,53 +1,63 @@
 
-package org.pwr.transporter.entity.warehouse;
+package org.pwr.transporter.entity.enums;
 
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
 
 import org.pwr.transporter.entity.GenericEntity;
-import org.pwr.transporter.entity.base.Address;
 
 
 
 /**
  * <pre>
- *    Define warehouse model.
+ *    Base for all other enums.
  * </pre>
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.3
+ * @version 0.0.1
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name = "warehouse")
-public class Warehouse extends GenericEntity {
+public abstract class GenericEnum extends GenericEntity {
 
     /**  */
-    private static final long serialVersionUID = 3461170154496460630L;
+    private static final long serialVersionUID = -2272167303588056019L;
 
     // *******************************************************************************************************************************
     // ****** FIELDS
     // *******************************************************************************************************************************
 
-    @OneToOne
-    Address address;
+    @Column(name = "name")
+    private String name;
+
+    @Column(name = "value")
+    private int value;
 
 
     // *******************************************************************************************************************************
     // ****** GETTERS AND SETTERS
     // *******************************************************************************************************************************
 
-    public Address getAddress() {
-        return this.address;
+    public String getName() {
+        return this.name;
     }
 
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public int getValue() {
+        return this.value;
+    }
+
+
+    public void setValue(int value) {
+        this.value = value;
     }
 }

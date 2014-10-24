@@ -1,18 +1,21 @@
 
-package org.pwr.transporter.entity.base;
+package org.pwr.transporter.entity.sales;
 
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 
-import org.pwr.transporter.entity.GenericEntity;
+import org.pwr.transporter.entity.NamesForHibernate;
+import org.pwr.transporter.entity.base.GenericDocumentRow;
 
 
 
 /**
  * <pre>
- *     Abstract definition for document row.
+ *    Sales request acquired document row model.
  * </pre>
  * <hr/>
  * 
@@ -20,17 +23,20 @@ import org.pwr.transporter.entity.GenericEntity;
  * @version 0.0.1
  */
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class DocumentRow extends GenericEntity {
+@Inheritance(strategy = InheritanceType.JOINED)
+@Table(name = NamesForHibernate.SALES_ORDER_ROW)
+@PrimaryKeyJoinColumn(name = NamesForHibernate.GENERIC_DOCUMENT_ROW_ID)
+public class SalesOrderRow extends GenericDocumentRow {
 
     /**  */
-    private static final long serialVersionUID = 8415513351044892188L;
+    private static final long serialVersionUID = -371217372609275045L;
 
     // *******************************************************************************************************************************
-    // ****** FIELDS
+    // ****** GETTERS AND SETTERS
     // *******************************************************************************************************************************
 
     // *******************************************************************************************************************************
     // ****** GETTERS AND SETTERS
     // *******************************************************************************************************************************
+
 }

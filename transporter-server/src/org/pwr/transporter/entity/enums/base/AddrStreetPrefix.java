@@ -4,9 +4,11 @@ package org.pwr.transporter.entity.enums.base;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
-import org.pwr.transporter.entity.GenericEntity;
+import org.pwr.transporter.entity.enums.GenericEnum;
 
 
 
@@ -17,11 +19,12 @@ import org.pwr.transporter.entity.GenericEntity;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.2
+ * @version 0.0.3
  */
 @Entity
 @Table(name = "enum_addr_street_prefix")
-public class AddrStreetPrefix extends GenericEntity {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public class AddrStreetPrefix extends GenericEnum {
 
     /**  */
     private static final long serialVersionUID = 4257968750152980117L;
@@ -29,26 +32,13 @@ public class AddrStreetPrefix extends GenericEntity {
     // *******************************************************************************************************************************
     // ****** FIELDS
     // *******************************************************************************************************************************
-
-    // *******************************************************************************************************************************
-    // ****** GETTERS AND SETTERS
-    // *******************************************************************************************************************************
-    @Column(name = "name")
-    private String name;
-
     @Column(name = "nprefix")
     private String prefix;
 
 
-    public String getName() {
-        return name;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
+    // *******************************************************************************************************************************
+    // ****** GETTERS AND SETTERS
+    // *******************************************************************************************************************************
 
     public String getPrefix() {
         return prefix;

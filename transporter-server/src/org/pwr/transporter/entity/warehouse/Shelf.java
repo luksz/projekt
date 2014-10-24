@@ -22,7 +22,7 @@ import org.pwr.transporter.entity.GenericEntity;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.4
+ * @version 0.0.5
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

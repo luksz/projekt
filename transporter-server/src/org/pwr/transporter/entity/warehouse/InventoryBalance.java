@@ -13,7 +13,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.Any;
 import org.pwr.transporter.entity.GenericEntity;
-import org.pwr.transporter.entity.article.Ware;
+import org.pwr.transporter.entity.article.GenericWare;
 
 
 
@@ -44,7 +44,7 @@ public class InventoryBalance extends GenericEntity {
     // FIXME check what it is doing
     @Any(metaColumn = @Column(name = "id"))
     @ManyToOne(optional = false)
-    private Ware ware;
+    private GenericWare ware;
 
     @Column(name = "quantity", nullable = false)
     private BigDecimal quantity;
@@ -64,12 +64,12 @@ public class InventoryBalance extends GenericEntity {
     }
 
 
-    public Ware getWare() {
+    public GenericWare getWare() {
         return this.ware;
     }
 
 
-    public void setWare(Ware ware) {
+    public void setWare(GenericWare ware) {
         this.ware = ware;
     }
 

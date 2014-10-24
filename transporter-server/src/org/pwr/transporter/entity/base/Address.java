@@ -1,8 +1,11 @@
+
 package org.pwr.transporter.entity.base;
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -19,10 +22,11 @@ import org.pwr.transporter.entity.enums.base.AddrStreetPrefix;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.4
+ * @version 0.0.5
  */
 @Entity
 @Table(name = "address")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Address extends GenericEntity {
 
     private static final long serialVersionUID = 3223188310530625995L;

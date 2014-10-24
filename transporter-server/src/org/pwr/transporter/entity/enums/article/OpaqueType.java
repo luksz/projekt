@@ -1,53 +1,39 @@
 
-package org.pwr.transporter.entity.warehouse;
+package org.pwr.transporter.entity.enums.article;
 
 
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.pwr.transporter.entity.GenericEntity;
-import org.pwr.transporter.entity.base.Address;
 
 
 
 /**
  * <pre>
- *    Define warehouse model.
+ *    Defines opaque types.
  * </pre>
  * <hr/>
  * 
- * @author W.S.
- * @version 0.0.3
+ * @author x0r
+ * @version 0.0.1
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-@Table(name = "warehouse")
-public class Warehouse extends GenericEntity {
+@Table(name = "enum_opaque_type")
+public class OpaqueType extends GenericEntity {
 
     /**  */
-    private static final long serialVersionUID = 3461170154496460630L;
+    private static final long serialVersionUID = -4712769244306775825L;
 
     // *******************************************************************************************************************************
     // ****** FIELDS
     // *******************************************************************************************************************************
 
-    @OneToOne
-    Address address;
-
-
     // *******************************************************************************************************************************
     // ****** GETTERS AND SETTERS
     // *******************************************************************************************************************************
 
-    public Address getAddress() {
-        return this.address;
-    }
-
-
-    public void setAddress(Address address) {
-        this.address = address;
-    }
 }

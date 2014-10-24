@@ -1,8 +1,11 @@
+
 package org.pwr.transporter.entity.base;
 
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 import org.pwr.transporter.entity.GenericEntity;
@@ -16,10 +19,11 @@ import org.pwr.transporter.entity.GenericEntity;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.2
+ * @version 0.0.3
  */
 @Entity
 @Table(name = "country")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Country extends GenericEntity {
 
     private static final long serialVersionUID = 2649860719507812031L;
