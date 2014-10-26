@@ -34,6 +34,11 @@
         	<enabled>false</enabled>
         </snapshots>
     </repository>
+      <repository>
+	    <id>spring-snapshot</id>
+	    <name>Spring Snapshot Repository</name>
+	    <url>http://repo.springsource.org/snapshot</url>
+	  </repository>
   </repositories>
 
   <pluginRepositories>  
@@ -142,7 +147,17 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>4.0.6.RELEASE</version>
 		</dependency>	
-		
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>4.0.0.CI-SNAPSHOT</version>
+		  </dependency>
+		  <dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>4.0.0.CI-SNAPSHOT</version>
+		  </dependency>
+				
 		<!-- Sprinf DB -->
 		<dependency>
 			<groupId>org.springframework</groupId>

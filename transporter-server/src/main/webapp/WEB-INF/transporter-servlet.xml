@@ -4,6 +4,7 @@
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xmlns:tx="http://www.springframework.org/schema/tx"
 		xmlns:mvc="http://www.springframework.org/schema/mvc"
+		xmlns:sec="http://www.springframework.org/schema/security"
 		xsi:schemaLocation="
 			http://www.springframework.org/schema/beans
 			http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
@@ -11,12 +12,16 @@
 			http://www.springframework.org/schema/context/spring-context-4.0.xsd
 			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
 			http://www.springframework.org/schema/mvc
-        	http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+        	http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        	http://www.springframework.org/schema/security
+			http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 
     <!-- Enable @Controller annotation support -->
     <mvc:annotation-driven />
     <context:annotation-config />
  	<context:component-scan base-package="org.pwr.transporter.server.web.controllers" />
+ 	
+ 	<mvc:resources mapping="/resources/**" location="/resources/" /> 
 	
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -60,9 +65,36 @@
 		<property name="sessionFactory" ref="sessionFactory" />
     </bean>
     
-    <bean id="test" class="main.webapp.Test">
-    </bean>
-   
+    <sec:http auto-config="true" use-expressions="true">
+ 
+		<sec:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/tests/*" access="hasRole('ROLE_DEV')" />
+ 
+		<!-- access denied page -->
+		<sec:access-denied-handler error-page="/403" />
+ 
+		<sec:form-login 
+		    login-page="/login" 
+		    default-target-url="/index" 
+			authentication-failure-url="/login?error" 
+			username-parameter="username"
+			password-parameter="password" />
+		<sec:logout logout-success-url="/login?logout"  />
+		<!-- enable csrf protection -->
+		<sec:csrf/>
+	</sec:http>
+ 
+	<!-- Select users and user_roles from database -->
+	<sec:authentication-manager>
+	  <sec:authentication-provider>
+		<sec:jdbc-user-service data-source-ref="dataSource"
+		  users-by-username-query=
+		    "select username,password, enabled from users where username=?"
+		  authorities-by-username-query=
+		    "select user, role from users_role where username=?  " />
+	  </sec:authentication-provider>
+	</sec:authentication-manager>
+    
 	<import resource="beans.xml"/>
 	
 </beans>
