@@ -79,7 +79,7 @@
 			authentication-failure-url="/login?error" 
 			username-parameter="username"
 			password-parameter="password" />
-		<sec:logout logout-success-url="/login?logout"  />
+		<sec:logout logout-success-url="/logout"  />
 		<!-- enable csrf protection -->
 		<sec:csrf/>
 	</sec:http>

@@ -9,6 +9,5 @@
 	<div class="footer">
 		<h1>Transporter ↄ⃝ all rights reversed</h1>
 	</div>
-	
 </body>
 </html>

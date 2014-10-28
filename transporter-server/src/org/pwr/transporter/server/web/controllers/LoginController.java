@@ -12,18 +12,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
  * <pre>
- *    Show login page.
+ *    Show login or logout page.
  * </pre>
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.3
  */
 @Controller
 public class LoginController {
 
     @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String doGet(HttpServletRequest request, HttpServletResponse response) {
-        return "login";
+    public String doGetLogin(HttpServletRequest request, HttpServletResponse response) {
+        return "/Views/log/login";
+    }
+
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String doPostLogin(HttpServletRequest request, HttpServletResponse response) {
+        return "/index";
+    }
+
+
+    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    public String doGetLogout(HttpServletRequest request, HttpServletResponse response) {
+        // TODO
+        return "/Views/log/logout";
     }
 }
