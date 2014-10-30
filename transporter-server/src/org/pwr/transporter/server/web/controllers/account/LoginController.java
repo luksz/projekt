@@ -1,4 +1,4 @@
-package org.pwr.transporter.server.web.controllers;
+package org.pwr.transporter.server.web.controllers.account;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,21 +22,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class LoginController {
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/log/login", method = RequestMethod.GET)
     public String doGetLogin(HttpServletRequest request, HttpServletResponse response) {
         return "/Views/log/login";
     }
 
 
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    @RequestMapping(value = "/log/login", method = RequestMethod.POST)
     public String doPostLogin(HttpServletRequest request, HttpServletResponse response) {
         return "/index";
     }
 
 
-    @RequestMapping(value = "/logout", method = RequestMethod.GET)
+    @RequestMapping(value = "/log/logout", method = RequestMethod.GET)
     public String doGetLogout(HttpServletRequest request, HttpServletResponse response) {
-        // TODO
         return "/Views/log/logout";
     }
 }

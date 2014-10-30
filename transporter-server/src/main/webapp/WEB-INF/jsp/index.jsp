@@ -3,10 +3,19 @@
 <trans:template>
 	<div class="view">
 		<h1>Transporter strona główna</h1>
-		<p>
-			Witaj na stronie programu transporter.<br>
-			Kliknij "Zaloguj" w menu na górze aby przejść do oprogramu.<br>
-			<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-		</p>
+		<c:choose>
+			<c:when test="${empty username}">
+				<p>
+					Witaj na stronie programu transporter.<br>
+					Kliknij "Zaloguj" w menu na górze aby przejść do oprogramu.<br>
+				</p>
+			</c:when>
+			<c:otherwise>
+				<h2>
+					Hail ${username} !<br/>
+			    </h2>
+			    <%@ include file="Views/activity.jsp" %>
+			</c:otherwise>
+		</c:choose>
 	</div>
 </trans:template>

@@ -19,9 +19,41 @@
 		<property name="customerDAO" ref="customerDAO" />
 	</bean>
 	
-	<bean id="customerService" class="org.pwr.transporter.server.web.services.CustomerService">
-		<property name="customerLogic" ref="customerLogic" />
+	<bean id="customerService" class="org.pwr.transporter.server.web.services.CustomerService" />
+	
+	<!-- Streat prefix -->
+	<bean id="addrStreetPrefixDAO" class="org.pwr.transporter.server.dao.impl.enums.AddrStreetPrefixDAOImpl">
+		<property name="transactionManager" ref="transactionManager" />
 	</bean>
+	
+	<bean id="addrStreetPrefixLogic" class="org.pwr.transporter.server.business.enums.AddrStreetPrefixLogic">
+		<property name="addrStreetPrefixDAO" ref="addrStreetPrefixDAO" />
+	</bean>
+	
+	<bean id="addrStreetPrefixService" class="org.pwr.transporter.server.web.services.enums.AddrStreetPrefixService" />
+	
+	<!-- Country -->
+	<bean id="countryDAO" class="org.pwr.transporter.server.dao.impl.CountryDAOImpl">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	
+	<bean id="countryLogic" class="org.pwr.transporter.server.business.CountryLogic">
+		<property name="countryDAO" ref="countryDAO" />
+		<property name="companyDataDAO" ref="companyDataDAO" />
+	</bean>
+	
+	<bean id="countryService" class="org.pwr.transporter.server.web.services.CountryService" />
+	
+	<!-- Company Data -->
+	<bean id="companyDataDAO" class="org.pwr.transporter.server.dao.impl.CompanyDataDAOImpl">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	
+	<bean id="companyDataLogic" class="org.pwr.transporter.server.business.CompanyDataLogic">
+		<property name="companyDataDAO" ref="companyDataDAO" />
+	</bean>
+	
+	<bean id="companyDataService" class="org.pwr.transporter.server.web.services.CompanyDataService" />
 			
 			
 </beans>

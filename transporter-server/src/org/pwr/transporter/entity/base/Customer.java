@@ -1,9 +1,9 @@
-
 package org.pwr.transporter.entity.base;
 
 
 import java.util.Set;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * <hr/>
  * 
  * @author x0r
- * @version 0.0.3
+ * @version 0.0.4
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -38,6 +38,12 @@ public class Customer extends Person {
     @OneToMany(mappedBy = TABLE_NAME)
     Set<Address> deliveryAddress;
 
+    @Column(name = "regon")
+    private String regon;
+
+    @Column(name = "company", nullable = false)
+    private boolean company;
+
 
     // *******************************************************************************************************************************
     // ****** GETTERS AND SETTERS
@@ -50,5 +56,25 @@ public class Customer extends Person {
 
     public void setDeliveryAddress(Set<Address> deliveryAddress) {
         this.deliveryAddress = deliveryAddress;
+    }
+
+
+    public void setRegon(String regon) {
+        this.regon = regon;
+    }
+
+
+    public String getRegon() {
+        return this.regon;
+    }
+
+
+    public boolean isCompany() {
+        return this.company;
+    }
+
+
+    public void setCompany(boolean company) {
+        this.company = company;
     }
 }

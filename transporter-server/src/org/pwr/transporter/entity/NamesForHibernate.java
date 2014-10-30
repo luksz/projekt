@@ -8,9 +8,11 @@ package org.pwr.transporter.entity;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.4
+ * @version 0.0.5
  */
 public class NamesForHibernate {
+
+    public static final String COMPANY_DATA = "company_data";
 
     public static final String USERS = "users";
     public static final String USERS_ID = "users_id";

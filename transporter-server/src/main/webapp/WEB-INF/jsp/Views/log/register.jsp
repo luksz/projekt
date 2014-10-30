@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="footer">
-	<h1>Transporter ↄ⃝ all rights reversed</h1>
-</div>
+    <%@ include file="../../template/headers.jsp" %>
+<<trans:template>
+
+</trans:template>

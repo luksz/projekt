@@ -49,11 +49,11 @@
   </welcome-file-list>
   <error-page>
     <error-code>404</error-code>
-    <location>/404</location>
+    <location>/errors/404</location>
   </error-page>	
   <error-page>
     <error-code>403</error-code>
-    <location>/403</location>
+    <location>/errors/403</location>
   </error-page>	
   <session-config>
     <session-timeout>30</session-timeout>

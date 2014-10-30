@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.server.dao.impl;
 
 
@@ -26,7 +25,7 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
  * <hr/>
  * 
  * @author x0r, copied from examples
- * @version 0.0.4
+ * @version 0.0.5
  */
 public abstract class GenericDAOImpl<T extends GenericEntity> implements GenericDAO<T> {
 
@@ -42,19 +41,16 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
 
 
     public GenericDAOImpl() {
-        System.out.println("Creating generic dao impl");
     }
 
 
     public void setEntityClass(final Class<T> clazz) {
-        // TODO Setting entity class
         this.clazz = clazz;
     }
 
 
     @SuppressWarnings("unchecked")
     public T getByID(Long id) {
-        // TODO Select by ID
         return (T) getCurrentSession().get(clazz, id);
     }
 
@@ -96,14 +92,16 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
     }
 
 
+    /**
+     * Do not delete anything.
+     */
     public void delete(T entity) {
-        // TODO Delete by entity
-        getCurrentSession().delete(entity);
+        entity.setActive(false);
+        getCurrentSession().update(entity);
     }
 
 
     public void deleteById(Long id) {
-        // TODO Delete by id of entity
         delete(getByID(id));
     }
 
@@ -113,7 +111,7 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
     }
 
 
-    private Session getCurrentSession() {
+    protected Session getCurrentSession() {
         Session session = transactionManager.getSessionFactory().getCurrentSession();
         return session;
     }
