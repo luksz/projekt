@@ -14,7 +14,7 @@
 				<h2>
 					Hail ${username} !<br/>
 			    </h2>
-			    <%@ include file="Views/activity.jsp" %>
+			    <%-- <%@ include file="Views/activity.jsp" %> --%>
 			</c:otherwise>
 		</c:choose>
 	</div>

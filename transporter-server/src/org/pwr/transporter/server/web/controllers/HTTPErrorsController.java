@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.server.web.controllers;
 
 
@@ -26,14 +27,14 @@ public class HTTPErrorsController {
     private static Logger LOGGER = Logger.getLogger(HTTPErrorsController.class);
 
 
-    @RequestMapping(value = "/403", method = RequestMethod.GET)
+    @RequestMapping(value = "/errors/403", method = RequestMethod.GET)
     public String doGet403(HttpServletRequest request, HttpServletResponse response) {
         LOGGER.debug("Get 403 error page");
         return "/errors/403";
     }
 
 
-    @RequestMapping(value = "/404", method = RequestMethod.GET)
+    @RequestMapping(value = "/errors/404", method = RequestMethod.GET)
     public String doGet404(HttpServletRequest request, HttpServletResponse response) {
         LOGGER.debug("Get 404 error page");
         return "/errors/404";

@@ -212,6 +212,9 @@
     	<resource>
     		<directory>resources</directory>
     	</resource>
+    	<resource>
+    		<directory>src/main/webapp/resources/</directory>
+    	</resource>
     </resources>
 	<finalName>transporter-server</finalName>
     <plugins>

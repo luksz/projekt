@@ -55,5 +55,15 @@
 	
 	<bean id="companyDataService" class="org.pwr.transporter.server.web.services.CompanyDataService" />
 			
-			
+
+	<!-- Address -->
+	<bean id="addressDAO" class="org.pwr.transporter.server.dao.impl.AddressDAOImpl">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	
+	<bean id="addressLogic" class="org.pwr.transporter.server.business.AddressLogic">
+		<property name="addressDAO" ref="addressDAO" />
+	</bean>
+	
+	<bean id="addressService" class="org.pwr.transporter.server.web.services.AddressService" />
 </beans>

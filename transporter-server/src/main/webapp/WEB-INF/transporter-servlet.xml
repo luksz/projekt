@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
+		
 		xmlns:context="http://www.springframework.org/schema/context"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		xmlns:tx="http://www.springframework.org/schema/tx"
@@ -65,15 +66,15 @@
 		<property name="sessionFactory" ref="sessionFactory" />
     </bean>
     
-    <!-- <sec:global-method-security secured-annotations="enabled" /> -->
-    <sec:http security="none" pattern="/log/**"/>
-    <sec:http security="none" pattern="/errors/**"/>
-    <sec:http security="none" pattern="/resources/**"/>
+    <sec:global-method-security secured-annotations="enabled" />
+    <sec:http security='none' pattern="/log/**"/>
+    <sec:http security='none' pattern="/errors/**"/>
+    <sec:http security='none' pattern="/resources/**"/>
     
-    <sec:http auto-config="true" use-expressions="true">
- 
-		<sec:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')" />
-		<sec:intercept-url pattern="/tests/*" access="hasRole('ROLE_DEV')" />
+    <sec:http use-expressions="true">
+ 		<sec:intercept-url pattern="/user/**" access="hasRole('ROLE_USER')" />
+		<sec:intercept-url pattern="/admin/**" access="hasRole('ROLE_ADMIN')" />
+		<sec:intercept-url pattern="/tests/**" access="hasRole('ROLE_DEV')" />
  
 		<!-- access denied page -->
 		<sec:access-denied-handler error-page="/errors/403" />

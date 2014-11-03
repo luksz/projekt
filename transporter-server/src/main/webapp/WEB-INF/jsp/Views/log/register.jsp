@@ -2,5 +2,7 @@
     pageEncoding="UTF-8"%>
     <%@ include file="../../template/headers.jsp" %>
 <<trans:template>
-
+<div>
+	<%@ include file="../base/addressEdit.jsp" %>
+</div>
 </trans:template>

@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.server.web.services.enums;
 
 
@@ -5,6 +6,7 @@ import java.util.List;
 
 import org.pwr.transporter.entity.enums.base.AddrStreetPrefix;
 import org.pwr.transporter.server.business.enums.AddrStreetPrefixLogic;
+import org.springframework.beans.factory.annotation.Autowired;
 
 
 
@@ -14,17 +16,13 @@ import org.pwr.transporter.server.business.enums.AddrStreetPrefixLogic;
  * </pre>
  * <hr/>
  * 
- * @author x0r
+ * @author W.S.
  * @version 0.0.1
  */
 public class AddrStreetPrefixService {
 
-    AddrStreetPrefixLogic addrStreetPrefixLogic;
-
-
-    public void setAddrStreetPrefixLogic(AddrStreetPrefixLogic addrStreetPrefixLogic) {
-        this.addrStreetPrefixLogic = addrStreetPrefixLogic;
-    }
+    @Autowired
+    private AddrStreetPrefixLogic addrStreetPrefixLogic;
 
 
     public AddrStreetPrefix getByID(Long id) {
