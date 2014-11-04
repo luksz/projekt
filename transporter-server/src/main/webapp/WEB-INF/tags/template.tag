@@ -13,7 +13,7 @@
 		<meta name="Classification" content="" />
 		<meta name="Owner" content="transporter" />
 		<meta name="Language" content="pl" />
-		<link rel="stylesheet" type="text/css" media="all" href="/css/global.css"/>
+		<link rel="stylesheet" type="text/css" media="all" href="${pageContext.request.contextPath}/resources/css/global.css"/>
 	</head>
 	<body>
 		<jsp:include page="/WEB-INF/jsp/template/tophead.jsp" />

@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.server.web.controllers.account;
 
 
@@ -47,8 +46,6 @@ public class AccountController {
         List<AddrStreetPrefix> addrStreetPrefixs = addrStreetPrefixService.getList();
         List<Country> countires = countrService.getList();
 
-        LOGGER.debug("Get streets prefixes: " + addrStreetPrefixs.toString());
-        LOGGER.debug("Get countries: " + countires.toString());
         for( Country c : countires ) {
             LOGGER.debug(c.getName());
         }
@@ -56,7 +53,7 @@ public class AccountController {
         ModelAndView model = new ModelAndView("/Views/log/register");
 
         model.addObject("addrStreetPrefixs", addrStreetPrefixs);
-        model.addObject("countires", countires);
+        model.addObject("countries", countires);
 
         return model;
     }

@@ -8,7 +8,7 @@
 			<td>
 				<select name="addrStreetPrefix" required="required">
 				    <c:forEach items="${addrStreetPrefixs}" var="prefix">
-				        <option value="${prefix.id}" }>${prefix.name}</option>
+				        <option value="${prefix.id}">${prefix.name}</option>
 				    </c:forEach>
 				</select>
 			</td>
@@ -27,10 +27,10 @@
 		</tr>
 		<tr>
 			<td>Kraj</td>
+			<td>
 				<select name="country" required="required">
 				    <c:forEach items="${countries}" var="country">
-				 
-				        <option value="${country.id}"}><c:out value="${country.name}"></c:out></option>
+				        <option value="${country.id}"><c:out value="${country.name}"></c:out></option>
 				    </c:forEach>
 				</select>
 			</td>

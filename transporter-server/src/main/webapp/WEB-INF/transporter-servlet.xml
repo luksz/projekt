@@ -21,7 +21,7 @@
     <mvc:annotation-driven />
     <context:annotation-config />
  	<context:component-scan base-package="org.pwr.transporter.server.web.controllers" />
- 	
+ 	<mvc:default-servlet-handler />
  	<mvc:resources mapping="/resources/**" location="/resources/" /> 
 	
 	<bean
