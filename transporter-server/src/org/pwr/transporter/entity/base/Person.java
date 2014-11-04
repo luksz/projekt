@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.entity.base;
 
 
@@ -18,7 +19,7 @@ import org.pwr.transporter.entity.GenericEntity;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.5
+ * @version 0.0.6
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -31,9 +32,6 @@ public abstract class Person extends GenericEntity {
     // ****** FIELDS
     // *******************************************************************************************************************************
 
-    // *******************************************************************************************************************************
-    // ****** GETTERS AND SETTERS
-    // *******************************************************************************************************************************
     @Column(name = "name", nullable = false)
     private String name;
 
@@ -49,12 +47,19 @@ public abstract class Person extends GenericEntity {
     @Column(name = "nip")
     private String nip;
 
+    @Column(name = "email", nullable = false)
+    private String email;
+
 
     public Person() {
         name = null;
         surname = null;
     }
 
+
+    // *******************************************************************************************************************************
+    // ****** GETTERS AND SETTERS
+    // *******************************************************************************************************************************
 
     public void setName(String name) {
         this.name = name;
@@ -103,6 +108,16 @@ public abstract class Person extends GenericEntity {
 
     public void setNip(String nip) {
         this.nip = nip;
+    }
+
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+
+    public String getEmail() {
+        return this.email;
     }
 
 }
