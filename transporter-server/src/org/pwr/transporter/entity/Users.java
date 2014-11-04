@@ -9,9 +9,12 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.apache.log4j.Logger;
+import org.pwr.transporter.entity.base.Customer;
+import org.pwr.transporter.entity.base.Emplyee;
 import org.springframework.security.crypto.codec.Hex;
 
 
@@ -23,7 +26,7 @@ import org.springframework.security.crypto.codec.Hex;
  * <hr/>
  * 
  * @author x0r
- * @version 0.0.3
+ * @version 0.0.5
  */
 @Entity
 @Table(name = NamesForHibernate.USERS)
@@ -55,10 +58,17 @@ public class Users extends GenericEntity {
     @Column(name = "email", nullable = false)
     private String email;
 
+    @OneToOne
+    private Customer customer;
+
+    @OneToOne
+    private Emplyee emplyee;
+
 
     public static byte[] nextSalt() throws NoSuchAlgorithmException {
         byte[] salt = new byte[SALT_LENGTH];
         SecureRandom sr = new SecureRandom();
+        sr.setSeed(Math.round(Math.random()));
         sr.nextBytes(salt);
         return salt;
     }
@@ -77,7 +87,7 @@ public class Users extends GenericEntity {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-512");
             byte[] salt = nextSalt();
-            this.salt = Hex.encode(salt).toString();
+            this.salt = String.valueOf(Hex.encode(salt));
             byte[] input = new byte[username.getBytes().length + password.getBytes().length + salt.length];
             System.arraycopy(salt, 0, input, 0, salt.length);
             System.arraycopy(username.getBytes(), 0, input, salt.length, username.getBytes().length);
@@ -122,5 +132,25 @@ public class Users extends GenericEntity {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+
+    public Customer getCustomer() {
+        return this.customer;
+    }
+
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+
+    public Emplyee getEmplyee() {
+        return this.emplyee;
+    }
+
+
+    public void setEmplyee(Emplyee emplyee) {
+        this.emplyee = emplyee;
     }
 }

@@ -19,7 +19,7 @@
 		<jsp:include page="/WEB-INF/jsp/template/tophead.jsp" />
 		<%-- --%>
 		<%--<jsp:include page="/WEB-INF/jsp/infrastructure/menue.jsp" /> --%>
-		<jsp:doBody />
+		<div class="body"><jsp:doBody /></div>
 		<jsp:include page="/WEB-INF/jsp/template/footer.jsp" />
 	</body>
 </html>

@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.entity.base;
 
 
@@ -22,7 +21,7 @@ import org.pwr.transporter.entity.enums.base.AddrStreetPrefix;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.5
+ * @version 0.0.6
  */
 @Entity
 @Table(name = "address")
@@ -42,6 +41,9 @@ public class Address extends GenericEntity {
 
     @Column(name = "zip_code")
     private String zipCode;
+
+    @Column(name = "street")
+    private String street;
 
     @Column(name = "local")
     private String local;
@@ -116,6 +118,16 @@ public class Address extends GenericEntity {
 
     public void setPostCity(String postCity) {
         this.postCity = postCity;
+    }
+
+
+    public String getStreet() {
+        return this.street;
+    }
+
+
+    public void setStreet(String street) {
+        this.street = street;
     }
 
 }
