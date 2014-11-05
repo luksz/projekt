@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 import org.apache.log4j.Logger;
 import org.pwr.transporter.entity.base.Customer;
-import org.pwr.transporter.entity.base.Emplyee;
+import org.pwr.transporter.entity.base.Employee;
 import org.springframework.security.crypto.codec.Hex;
 
 
@@ -62,7 +62,7 @@ public class Users extends GenericEntity {
     private Customer customer;
 
     @OneToOne
-    private Emplyee emplyee;
+    private Employee emplyee;
 
 
     public static byte[] nextSalt() throws NoSuchAlgorithmException {
@@ -145,12 +145,12 @@ public class Users extends GenericEntity {
     }
 
 
-    public Emplyee getEmplyee() {
+    public Employee getEmplyee() {
         return this.emplyee;
     }
 
 
-    public void setEmplyee(Emplyee emplyee) {
+    public void setEmplyee(Employee emplyee) {
         this.emplyee = emplyee;
     }
 }

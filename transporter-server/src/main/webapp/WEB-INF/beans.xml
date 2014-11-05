@@ -66,4 +66,29 @@
 	</bean>
 	
 	<bean id="addressService" class="org.pwr.transporter.server.web.services.AddressService" />
+	<bean id="addressValidator" class="org.pwr.transporter.server.web.validators.AddressValidator" />
+	
+	<!-- Users -->
+	<bean id="usersDAO" class="org.pwr.transporter.server.dao.impl.UsersDAOImpl">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	
+	<bean id="usersLogic" class="org.pwr.transporter.server.business.UsersLogic">
+		<property name="usersDAO" ref="usersDAO" />
+	</bean>
+	
+	<bean id="usersService" class="org.pwr.transporter.server.web.services.UsersService" />
+	
+	<bean id="customerAccountValidator" class="org.pwr.transporter.server.web.validators.forms.CustomerAccountValidator" />
+	
+	<!-- Employee -->
+	<bean id="employeeDAO" class="org.pwr.transporter.server.dao.impl.EmployeeDAOImpl">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	
+	<bean id="employeeLogic" class="org.pwr.transporter.server.business.EmployeeLogic">
+		<property name="employeeDAO" ref="employeeDAO" />
+	</bean>
+	
+	<bean id="employeeService" class="org.pwr.transporter.server.web.services.EmployeeService" />
 </beans>

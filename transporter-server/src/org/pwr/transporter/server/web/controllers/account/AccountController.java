@@ -7,16 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.pwr.transporter.entity.Users;
-import org.pwr.transporter.entity.base.Address;
 import org.pwr.transporter.entity.base.Country;
-import org.pwr.transporter.entity.base.Customer;
 import org.pwr.transporter.entity.enums.base.AddrStreetPrefix;
+import org.pwr.transporter.server.web.form.CustomerAccountForm;
+import org.pwr.transporter.server.web.services.AddressService;
 import org.pwr.transporter.server.web.services.CountryService;
+import org.pwr.transporter.server.web.services.UsersService;
 import org.pwr.transporter.server.web.services.enums.AddrStreetPrefixService;
+import org.pwr.transporter.server.web.validators.forms.CustomerAccountValidator;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,7 +36,7 @@ import org.springframework.web.servlet.ModelAndView;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.3
+ * @version 0.0.6
  */
 @Controller
 public class AccountController {
@@ -43,6 +48,22 @@ public class AccountController {
 
     @Autowired
     private CountryService countryService;
+
+    @Autowired
+    private UsersService usersService;
+
+    @Autowired
+    private AddressService addressService;
+
+    @Autowired
+    @Qualifier("customerAccountValidator")
+    private CustomerAccountValidator validator;
+
+
+    @InitBinder
+    private void initBinder(WebDataBinder binder) {
+        binder.setValidator(validator);
+    }
 
 
     @RequestMapping(value = "/log/register", method = RequestMethod.GET)
@@ -59,25 +80,30 @@ public class AccountController {
 
         model.addObject("addrStreetPrefixs", addrStreetPrefixs);
         model.addObject("countries", countires);
-        model.addObject("customer", new Customer());
-        model.addObject("user", new Users());
-        model.addObject("baseAddress", new Address());
-        model.addObject("correspondeAddress", new Address());
+        model.addObject("customerAccountForm", new CustomerAccountForm());
 
         return model;
     }
 
 
     @RequestMapping(value = "/log/register", method = RequestMethod.POST)
-    public ModelAndView doPostRegister(@ModelAttribute("customer") Customer customer, @ModelAttribute("baseAddress") Address baseAddress,
-            @ModelAttribute("correspondeAddress") Address correspondeAddress, @ModelAttribute("user") Users user, BindingResult result) {
+    public ModelAndView doPostRegister(@ModelAttribute("customerAccountForm") @Validated CustomerAccountForm accountForm, BindingResult formBindeings) {
 
-        LOGGER.debug("Password: " + user.getPassword());
-        LOGGER.debug("Userame: " + user.getUsername());
-        LOGGER.debug("email: " + user.getEmail());
-        LOGGER.debug("salt: " + user.getSalt());
+        if( formBindeings.hasErrors() ) {
+            LOGGER.info("Validation fails");
+            List<AddrStreetPrefix> addrStreetPrefixs = addrStreetPrefixService.getList();
+            List<Country> countires = countryService.getList();
+            ModelAndView model = new ModelAndView("/log/register");
+            model.addObject("addrStreetPrefixs", addrStreetPrefixs);
+            model.addObject("countries", countires);
+            model.addObject("customerAccountForm", accountForm);
+            return model;
+        }
+        LOGGER.debug("Password: " + accountForm.getUser().getPassword());
+        LOGGER.debug("Userame: " + accountForm.getUser().getUsername());
+        LOGGER.debug("email: " + accountForm.getUser().getEmail());
+        LOGGER.debug("salt: " + accountForm.getUser().getSalt());
 
-        ModelAndView model = new ModelAndView("/index");
-        return model;
+        return new ModelAndView("/index");
     }
 }

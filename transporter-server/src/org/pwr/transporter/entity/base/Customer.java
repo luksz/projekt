@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * <hr/>
  * 
  * @author x0r
- * @version 0.0.4
+ * @version 0.0.5
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -43,6 +43,9 @@ public class Customer extends Person {
 
     @Column(name = "company", nullable = false)
     private boolean company;
+
+    @Column(name = "companyName")
+    private String companyName;
 
 
     // *******************************************************************************************************************************
@@ -76,5 +79,15 @@ public class Customer extends Person {
 
     public void setCompany(boolean company) {
         this.company = company;
+    }
+
+
+    public String getCompanyName() {
+        return this.companyName;
+    }
+
+
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 }
