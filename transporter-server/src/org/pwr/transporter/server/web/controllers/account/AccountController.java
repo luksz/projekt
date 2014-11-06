@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.server.web.controllers.account;
 
 
@@ -16,16 +17,13 @@ import org.pwr.transporter.server.web.services.UsersService;
 import org.pwr.transporter.server.web.services.enums.AddrStreetPrefixService;
 import org.pwr.transporter.server.web.validators.forms.CustomerAccountValidator;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 
 
@@ -56,18 +54,17 @@ public class AccountController {
     private AddressService addressService;
 
     @Autowired
-    @Qualifier("customerAccountValidator")
+    // @Qualifier("customerAccountValidator")
     private CustomerAccountValidator validator;
 
 
-    @InitBinder
-    private void initBinder(WebDataBinder binder) {
-        binder.setValidator(validator);
-    }
-
+    // @InitBinder
+    // private void initBinder(WebDataBinder binder) {
+    // binder.setValidator(validator);
+    // }
 
     @RequestMapping(value = "/log/register", method = RequestMethod.GET)
-    public ModelAndView doGetRegister(HttpServletRequest request, HttpServletResponse response) {
+    public String doGetRegister(HttpServletRequest request, HttpServletResponse response, Model model) {
 
         List<AddrStreetPrefix> addrStreetPrefixs = addrStreetPrefixService.getList();
         List<Country> countires = countryService.getList();
@@ -76,34 +73,37 @@ public class AccountController {
             LOGGER.debug(c.getName());
         }
 
-        ModelAndView model = new ModelAndView("/Views/log/register");
+        // ModelAndView model = new ModelAndView("/Views/log/register");
 
-        model.addObject("addrStreetPrefixs", addrStreetPrefixs);
-        model.addObject("countries", countires);
-        model.addObject("customerAccountForm", new CustomerAccountForm());
+        model.addAttribute("addrStreetPrefixs", addrStreetPrefixs);
+        model.addAttribute("countries", countires);
+        model.addAttribute("customerAccountForm", new CustomerAccountForm());
 
-        return model;
+        return "/Views/log/register";
     }
 
 
     @RequestMapping(value = "/log/register", method = RequestMethod.POST)
-    public ModelAndView doPostRegister(@ModelAttribute("customerAccountForm") @Validated CustomerAccountForm accountForm, BindingResult formBindeings) {
+    public String doPostRegister(@ModelAttribute("customerAccountForm") @Validated CustomerAccountForm accountForm, BindingResult formBindeings,
+            Model model) {
+
+        validator.validate(accountForm, formBindeings);
 
         if( formBindeings.hasErrors() ) {
             LOGGER.info("Validation fails");
             List<AddrStreetPrefix> addrStreetPrefixs = addrStreetPrefixService.getList();
             List<Country> countires = countryService.getList();
-            ModelAndView model = new ModelAndView("/log/register");
-            model.addObject("addrStreetPrefixs", addrStreetPrefixs);
-            model.addObject("countries", countires);
-            model.addObject("customerAccountForm", accountForm);
-            return model;
+            // ModelAndView model = new ModelAndView("/log/register");
+            model.addAttribute("addrStreetPrefixs", addrStreetPrefixs);
+            model.addAttribute("countries", countires);
+            model.addAttribute("customerAccountForm", accountForm);
+            return "/Views/log/register";
         }
         LOGGER.debug("Password: " + accountForm.getUser().getPassword());
         LOGGER.debug("Userame: " + accountForm.getUser().getUsername());
         LOGGER.debug("email: " + accountForm.getUser().getEmail());
         LOGGER.debug("salt: " + accountForm.getUser().getSalt());
 
-        return new ModelAndView("/index");
+        return "/index";
     }
 }

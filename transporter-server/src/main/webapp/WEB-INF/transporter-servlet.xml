@@ -33,6 +33,10 @@
 			<value>.jsp</value>
 		</property>
 	</bean>
+	
+	<bean class="org.springframework.context.support.ResourceBundleMessageSource" id="messageSource">
+		<property name="basename" value="messages" />
+	</bean>
  
 	<bean id="defaultLocale" class="java.util.Locale">
 	  		<constructor-arg value="pl" />
@@ -44,12 +48,6 @@
 	
 	<bean id="localeChangeInterceptor" class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
 	 		<property name="paramName" value="lang" />
-	</bean>
-	
-	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
-		<property name="basename" value="classpath:messages" />
-		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
 	
 	<!-- Data source bean -->

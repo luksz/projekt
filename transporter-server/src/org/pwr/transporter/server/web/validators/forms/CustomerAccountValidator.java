@@ -1,10 +1,11 @@
+
 package org.pwr.transporter.server.web.validators.forms;
 
 
 import org.pwr.transporter.server.web.form.CustomerAccountForm;
 import org.pwr.transporter.server.web.validators.AddressValidator;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
+import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
 
@@ -16,13 +17,9 @@ import org.springframework.validation.Validator;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.2
  */
 public class CustomerAccountValidator implements Validator {
-
-    @Autowired
-    private AddressValidator addressValidator;
-
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -33,8 +30,14 @@ public class CustomerAccountValidator implements Validator {
     @Override
     public void validate(Object obj, Errors errors) {
         CustomerAccountForm accountForm = (CustomerAccountForm) obj;
-        if( accountForm.getPassword().equals(accountForm.getPassword2()) ) {
-            errors.rejectValue("password", "negativeValue", new Object[] { "'id'" }, "id can't be negative");
+
+        ( new AddressValidator("baseAddress.") ).validate(accountForm.getBaseAddress(), errors);
+
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "valid.account.password.empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password2", "valid.account.password.empty");
+        if( !accountForm.getPassword().equals(accountForm.getPassword2()) ) {
+            errors.rejectValue("password", "valid.account.passwords.not.equals");
+            // errors.rejectValue("password2", "negativeValue", new Object[] { "'password2'" }, "");
         }
     }
 

@@ -9,17 +9,22 @@
 		</form:select>
 	</td>
 	<td><form:input path="${addressPrefix}street"></form:input></td>
+	<td><form:errors path="${addressPrefix}street" cssClass="error" /></td>
+	<td><form:errors path="${addressPrefix}street" cssClass="error" /></td>
 </tr>
 <tr>
 	<td><form:label path="${addressPrefix}local">Numer mieszkania</form:label></td>
 	<td>
 		<form:input path="${addressPrefix}local" />
 	</td>
+	<td><form:errors path="${addressPrefix}local" cssClass="error" /></td>
 </tr>
 <tr>
 	<td><form:label path="${addressPrefix}city">Miasto</form:label></td>
 	<td><form:input path="${addressPrefix}city" /> </td>
 	<td><form:input path="${addressPrefix}zipCode" /> </td>
+	<td><form:errors path="${addressPrefix}city" cssClass="error" /></td>
+	<td><form:errors path="${addressPrefix}zipCode" cssClass="error" /></td>
 </tr>
 <tr>
 	<td><form:label path="${addressPrefix}country">Kraj</form:label></td>
