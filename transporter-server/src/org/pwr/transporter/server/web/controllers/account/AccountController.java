@@ -13,6 +13,7 @@ import org.pwr.transporter.entity.enums.base.AddrStreetPrefix;
 import org.pwr.transporter.server.web.form.CustomerAccountForm;
 import org.pwr.transporter.server.web.services.AddressService;
 import org.pwr.transporter.server.web.services.CountryService;
+import org.pwr.transporter.server.web.services.CustomerService;
 import org.pwr.transporter.server.web.services.UsersService;
 import org.pwr.transporter.server.web.services.enums.AddrStreetPrefixService;
 import org.pwr.transporter.server.web.validators.forms.CustomerAccountValidator;
@@ -54,6 +55,9 @@ public class AccountController {
     private AddressService addressService;
 
     @Autowired
+    private CustomerService customerService;
+
+    @Autowired
     // @Qualifier("customerAccountValidator")
     private CustomerAccountValidator validator;
 
@@ -73,8 +77,6 @@ public class AccountController {
             LOGGER.debug(c.getName());
         }
 
-        // ModelAndView model = new ModelAndView("/Views/log/register");
-
         model.addAttribute("addrStreetPrefixs", addrStreetPrefixs);
         model.addAttribute("countries", countires);
         model.addAttribute("customerAccountForm", new CustomerAccountForm());
@@ -93,12 +95,14 @@ public class AccountController {
             LOGGER.info("Validation fails");
             List<AddrStreetPrefix> addrStreetPrefixs = addrStreetPrefixService.getList();
             List<Country> countires = countryService.getList();
-            // ModelAndView model = new ModelAndView("/log/register");
             model.addAttribute("addrStreetPrefixs", addrStreetPrefixs);
             model.addAttribute("countries", countires);
             model.addAttribute("customerAccountForm", accountForm);
             return "/Views/log/register";
         }
+
+        usersService.insert(accountForm);
+
         LOGGER.debug("Password: " + accountForm.getUser().getPassword());
         LOGGER.debug("Userame: " + accountForm.getUser().getUsername());
         LOGGER.debug("email: " + accountForm.getUser().getEmail());

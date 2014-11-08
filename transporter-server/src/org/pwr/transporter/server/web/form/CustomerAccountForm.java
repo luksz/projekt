@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.server.web.form;
 
 
@@ -14,7 +15,7 @@ import org.pwr.transporter.entity.base.Customer;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.2
+ * @version 0.0.3
  */
 public class CustomerAccountForm {
 

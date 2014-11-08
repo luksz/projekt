@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.server.business;
 
 
@@ -16,7 +17,7 @@ import org.pwr.transporter.server.dao.UsersDAO;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.2
  */
 public class UsersLogic {
 
@@ -60,6 +61,16 @@ public class UsersLogic {
 
     public void setUsersDAO(UsersDAO usersDAO) {
         this.usersDAO = usersDAO;
+    }
+
+
+    public Users getByUserName(String username) {
+        return this.usersDAO.getByUserName(username);
+    }
+
+
+    public Users getByUserEmail(String email) {
+        return this.usersDAO.getByUserEmail(email);
     }
 
 }

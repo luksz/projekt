@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.server.web.services;
 
 
@@ -5,8 +6,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.pwr.transporter.entity.Users;
+import org.pwr.transporter.entity.base.Customer;
+import org.pwr.transporter.server.business.AddressLogic;
+import org.pwr.transporter.server.business.CustomerLogic;
 import org.pwr.transporter.server.business.UsersLogic;
 import org.pwr.transporter.server.dao.UsersDAO;
+import org.pwr.transporter.server.web.form.CustomerAccountForm;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -18,12 +23,18 @@ import org.springframework.beans.factory.annotation.Autowired;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.3
  */
 public class UsersService {
 
     @Autowired
     UsersLogic usersLogic;
+
+    @Autowired
+    CustomerLogic customerLogic;
+
+    @Autowired
+    AddressLogic addressLogic;
 
 
     public Users getByID(Long id) {
@@ -41,8 +52,19 @@ public class UsersService {
     }
 
 
-    public Long insert(Users entity) {
-        return this.usersLogic.insert(entity);
+    public Long insert(CustomerAccountForm accountForm) {
+        Long baseAddresId = addressLogic.insert(accountForm.getBaseAddress());
+        Long correAddresId = addressLogic.insert(accountForm.getCorrespondeAddress());
+        Customer customer = accountForm.getCustomer();
+        customer.setBaseAddress(addressLogic.getByID(baseAddresId));
+        customer.setContacAddress(addressLogic.getByID(correAddresId));
+        Long customerId = customerLogic.insert(customer);
+
+        Users user = accountForm.getUser();
+        user.setPassword(accountForm.getPassword());
+        user.setCustomer(customerLogic.getByID(customerId));
+        // TODO set role
+        return this.usersLogic.insert(user);
     }
 
 
@@ -65,4 +87,13 @@ public class UsersService {
         this.usersLogic.setUsersDAO(usersDAO);
     }
 
+
+    public Users getByUserName(String username) {
+        return this.usersLogic.getByUserName(username);
+    }
+
+
+    public Users getByUserEmail(String email) {
+        return this.usersLogic.getByUserEmail(email);
+    }
 }

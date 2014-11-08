@@ -37,7 +37,7 @@ public class CustomerAccountValidator implements Validator {
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password2", "valid.account.password.empty");
         if( !accountForm.getPassword().equals(accountForm.getPassword2()) ) {
             errors.rejectValue("password", "valid.account.passwords.not.equals");
-            // errors.rejectValue("password2", "negativeValue", new Object[] { "'password2'" }, "");
+            errors.rejectValue("password2", "valid.account.passwords.not.equals");
         }
     }
 

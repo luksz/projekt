@@ -1,3 +1,4 @@
+
 package org.pwr.transporter.server.dao;
 
 
@@ -12,8 +13,13 @@ import org.pwr.transporter.entity.Users;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.2
  */
 public interface UsersDAO extends GenericDAO<Users> {
+
+    Users getByUserName(String username);
+
+
+    Users getByUserEmail(String email);
 
 }
