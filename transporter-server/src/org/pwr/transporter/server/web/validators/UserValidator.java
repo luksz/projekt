@@ -1,10 +1,8 @@
-
 package org.pwr.transporter.server.web.validators;
 
 
 import org.pwr.transporter.entity.Users;
 import org.pwr.transporter.server.web.services.UsersService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 
@@ -17,11 +15,12 @@ import org.springframework.validation.ValidationUtils;
  * <hr/>
  * 
  * @author x0r
- * @version 0.0.2
+ * @version 0.0.5
  */
 public class UserValidator implements org.springframework.validation.Validator {
 
-    @Autowired
+    private String prefix;
+
     UsersService usersService;
 
 
@@ -31,20 +30,30 @@ public class UserValidator implements org.springframework.validation.Validator {
     }
 
 
+    public UserValidator(String prefix, UsersService usersService) {
+        this.prefix = prefix;
+        this.usersService = usersService;
+    }
+
+
     @Override
     public void validate(Object obj, Errors errors) {
         Users user = (Users) obj;
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "valid.user.username.empty");
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "email", "valid.user.email.empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, prefix + "username", "valid.user.username.empty");
+        ValidationUtils.rejectIfEmptyOrWhitespace(errors, prefix + "email", "valid.user.email.empty");
 
-        Users testUser = usersService.getByUserName(user.getUsername());
-        if( testUser != null ) {
-            errors.rejectValue("username", "valid.user.username.occupied");
+        if( user.getUsername() != null ) {
+            Users testUser = usersService.getByUserName(user.getUsername());
+            if( testUser != null ) {
+                errors.rejectValue(prefix + "username", "valid.user.username.occupied");
+            }
         }
-        Users testUser2 = usersService.getByUserEmail(user.getEmail());
-        if( testUser2 != null ) {
-            errors.rejectValue("username", "valid.user.username.occupied");
+        if( user.getEmail() != null ) {
+            Users testUser2 = usersService.getByUserEmail(user.getEmail());
+            if( testUser2 != null ) {
+                errors.rejectValue(prefix + "email", "valid.user.email.occupied");
+            }
         }
+
     }
-
 }

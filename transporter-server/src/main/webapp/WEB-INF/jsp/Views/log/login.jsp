@@ -19,7 +19,7 @@
 				<td>
 					<input name="submit" type="submit" value="Zaloguj" />
 					<!-- <input name="register" type="button" value="Zarejestruj" onclick="redirect:/register"/> -->
-					<a href="/Views/log/register.jsp"><button>Zarejestruj</button></a>
+					<a href="/transporter-server/log/register"><button>Zarejestruj</button></a>
 				</td>
 			</tr>
 		</table>

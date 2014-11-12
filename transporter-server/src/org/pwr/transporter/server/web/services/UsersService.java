@@ -1,14 +1,17 @@
-
 package org.pwr.transporter.server.web.services;
 
 
 import java.util.List;
 import java.util.Map;
 
+import org.pwr.transporter.entity.Role;
+import org.pwr.transporter.entity.UserRoles;
 import org.pwr.transporter.entity.Users;
 import org.pwr.transporter.entity.base.Customer;
 import org.pwr.transporter.server.business.AddressLogic;
 import org.pwr.transporter.server.business.CustomerLogic;
+import org.pwr.transporter.server.business.RoleLogic;
+import org.pwr.transporter.server.business.UserRolesLogic;
 import org.pwr.transporter.server.business.UsersLogic;
 import org.pwr.transporter.server.dao.UsersDAO;
 import org.pwr.transporter.server.web.form.CustomerAccountForm;
@@ -23,7 +26,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.3
+ * @version 0.0.4
  */
 public class UsersService {
 
@@ -35,6 +38,12 @@ public class UsersService {
 
     @Autowired
     AddressLogic addressLogic;
+
+    @Autowired
+    UserRolesLogic userRolesLogic;
+
+    @Autowired
+    RoleLogic roleLogic;
 
 
     public Users getByID(Long id) {
@@ -63,8 +72,20 @@ public class UsersService {
         Users user = accountForm.getUser();
         user.setPassword(accountForm.getPassword());
         user.setCustomer(customerLogic.getByID(customerId));
-        // TODO set role
-        return this.usersLogic.insert(user);
+        Long userId = this.usersLogic.insert(user);
+        Users userL = usersLogic.getByID(userId);
+        Role userRole = roleLogic.getByName("USER");
+        Role customerRole = roleLogic.getByName("CUSTOMER");
+        UserRoles userRoles = new UserRoles();
+        userRoles.setRole(userRole);
+        userRoles.setUser(userL);
+        userRolesLogic.insert(userRoles);
+
+        UserRoles userRoles2 = new UserRoles();
+        userRoles.setRole(customerRole);
+        userRoles.setUser(userL);
+        userRolesLogic.insert(userRoles2);
+        return userId;
     }
 
 

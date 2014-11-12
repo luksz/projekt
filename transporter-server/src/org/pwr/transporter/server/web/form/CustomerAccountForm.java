@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.server.web.form;
 
 
@@ -15,7 +14,7 @@ import org.pwr.transporter.entity.base.Customer;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.3
+ * @version 0.0.4
  */
 public class CustomerAccountForm {
 
@@ -25,6 +24,7 @@ public class CustomerAccountForm {
     Users user;
     String password;
     String password2;
+    boolean corespondeAddress;
 
 
     public CustomerAccountForm() {
@@ -92,6 +92,16 @@ public class CustomerAccountForm {
 
     public void setPassword2(String password2) {
         this.password2 = password2;
+    }
+
+
+    public boolean isCorespondeAddress() {
+        return this.corespondeAddress;
+    }
+
+
+    public void setCorespondeAddress(boolean corespondeAddress) {
+        this.corespondeAddress = corespondeAddress;
     }
 
 }

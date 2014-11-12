@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.server.web.controllers.account;
 
 
@@ -58,14 +57,8 @@ public class AccountController {
     private CustomerService customerService;
 
     @Autowired
-    // @Qualifier("customerAccountValidator")
     private CustomerAccountValidator validator;
 
-
-    // @InitBinder
-    // private void initBinder(WebDataBinder binder) {
-    // binder.setValidator(validator);
-    // }
 
     @RequestMapping(value = "/log/register", method = RequestMethod.GET)
     public String doGetRegister(HttpServletRequest request, HttpServletResponse response, Model model) {
@@ -99,6 +92,8 @@ public class AccountController {
             model.addAttribute("countries", countires);
             model.addAttribute("customerAccountForm", accountForm);
             return "/Views/log/register";
+        } else {
+
         }
 
         usersService.insert(accountForm);

@@ -10,7 +10,6 @@
 	</td>
 	<td><form:input path="${addressPrefix}street"></form:input></td>
 	<td><form:errors path="${addressPrefix}street" cssClass="error" /></td>
-	<td><form:errors path="${addressPrefix}street" cssClass="error" /></td>
 </tr>
 <tr>
 	<td><form:label path="${addressPrefix}local">Numer mieszkania</form:label></td>

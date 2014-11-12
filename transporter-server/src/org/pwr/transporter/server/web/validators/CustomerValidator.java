@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.server.web.validators;
 
 
@@ -16,9 +15,12 @@ import org.springframework.validation.Validator;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.4
  */
 public class CustomerValidator implements Validator {
+
+    private String prefix;
+
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -26,9 +28,18 @@ public class CustomerValidator implements Validator {
     }
 
 
-    @Override
-    public void validate(Object arg0, Errors errors) {
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "name", "valid.customer.name.not.empty");
+    public CustomerValidator(String prefix) {
+        this.prefix = prefix;
     }
 
+
+    @Override
+    public void validate(Object obj, Errors errors) {
+        Customer customer = (Customer) obj;
+        if( customer.isCompany() ) {
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, prefix + "companyName", "valid.customer.name.not.empty");
+            ValidationUtils.rejectIfEmptyOrWhitespace(errors, prefix + "nip", "valid.customer.nip.not.empty");
+        }
+        ( new PersonValidator(prefix) ).validate(obj, errors);
+    }
 }

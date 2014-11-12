@@ -67,7 +67,8 @@
 		<%-- <% addressPrefix = "correspondeAddress"; %> --%>
 		<c:set var="addressPrefix" scope="session" value="correspondeAddress."/>
 		<tr>
-			<th width="100%">Adres do korespondencji</th>
+			<td><form:checkbox path="corespondeAddress"/></td>
+			<td><form:label path="corespondeAddress">Adres do korespondencji</form:label></td>
 		</tr>
 		<tr>
 			<td>

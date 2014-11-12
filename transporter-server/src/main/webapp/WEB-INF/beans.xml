@@ -21,6 +21,8 @@
 	
 	<bean id="customerService" class="org.pwr.transporter.server.web.services.CustomerService" />
 	
+	<bean id="customerAccountValidator" class="org.pwr.transporter.server.web.validators.forms.CustomerAccountValidator" />
+	
 	<!-- Streat prefix -->
 	<bean id="addrStreetPrefixDAO" class="org.pwr.transporter.server.dao.impl.enums.AddrStreetPrefixDAOImpl">
 		<property name="transactionManager" ref="transactionManager" />
@@ -79,7 +81,27 @@
 	
 	<bean id="usersService" class="org.pwr.transporter.server.web.services.UsersService" />
 	
-	<bean id="customerAccountValidator" class="org.pwr.transporter.server.web.validators.forms.CustomerAccountValidator" />
+	<!-- Role -->
+	<bean id="roleDAO" class="org.pwr.transporter.server.dao.impl.RoleDAOImpl">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	
+	<bean id="roleLogic" class="org.pwr.transporter.server.business.RoleLogic">
+		<property name="roleDAO" ref="roleDAO" />
+	</bean>
+	
+	<bean id="roleService" class="org.pwr.transporter.server.web.services.RoleService" />
+	
+	<!-- UserRoles -->
+	<bean id="userRolesDAO" class="org.pwr.transporter.server.dao.impl.UserRolesDAOImpl">
+		<property name="transactionManager" ref="transactionManager" />
+	</bean>
+	
+	<bean id="userRolesLogic" class="org.pwr.transporter.server.business.UserRolesLogic">
+		<property name="userRolesDAO" ref="userRolesDAO" />
+	</bean>
+	
+	<bean id="companyDataService" class="org.pwr.transporter.server.web.services.CompanyDataService" />
 	
 	<!-- Employee -->
 	<bean id="employeeDAO" class="org.pwr.transporter.server.dao.impl.EmployeeDAOImpl">

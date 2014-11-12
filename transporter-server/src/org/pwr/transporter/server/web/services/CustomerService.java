@@ -30,10 +30,6 @@ public class CustomerService {
     }
 
 
-    // public CustomerService() {
-    // System.out.println("Creating Customer service");
-    // }
-
     public List<Customer> getList() {
         return this.customerLogic.getList();
     }

@@ -57,7 +57,6 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
 
     @SuppressWarnings("unchecked")
     public List<T> getList() {
-        // TODO Select as list
         Session session = getCurrentSession();
         Transaction tx = session.beginTransaction();
         String cname = clazz.getName();
@@ -70,13 +69,16 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
 
     @SuppressWarnings("unchecked")
     public List<T> search(Map<String, Object> parameterMap) {
-        // TODO For search purpose
+        Session session = getCurrentSession();
+        Transaction tx = session.beginTransaction();
         Criteria criteria = getCurrentSession().createCriteria(clazz);
         Set<String> fieldName = parameterMap.keySet();
         for( String field : fieldName ) {
             criteria.add(Restrictions.ilike(field, parameterMap.get(field)));
         }
-        return criteria.list();
+        List<T> resultList = criteria.list();
+        tx.commit();
+        return resultList;
     }
 
 
