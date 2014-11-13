@@ -101,7 +101,7 @@
 		<property name="userRolesDAO" ref="userRolesDAO" />
 	</bean>
 	
-	<bean id="companyDataService" class="org.pwr.transporter.server.web.services.CompanyDataService" />
+	<bean id="userRolesService" class="org.pwr.transporter.server.web.services.UserRolesService" />
 	
 	<!-- Employee -->
 	<bean id="employeeDAO" class="org.pwr.transporter.server.dao.impl.EmployeeDAOImpl">

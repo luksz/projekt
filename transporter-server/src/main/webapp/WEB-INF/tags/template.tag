@@ -17,7 +17,7 @@
 	</head>
 	<body>
 		<jsp:include page="/WEB-INF/jsp/template/tophead.jsp" />
-		<jsp:include page="/WEB-INF/jsp/template/sideBar.jsp" />
+		<%-- <jsp:include page="/WEB-INF/jsp/template/sideBar.jsp" /> --%>
 		<div class="body"><jsp:doBody /></div>
 		<jsp:include page="/WEB-INF/jsp/template/footer.jsp" />
 	</body>
