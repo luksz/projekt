@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.server.web.validators;
 
 
@@ -41,7 +40,6 @@ public class AddressValidator implements Validator {
 
     @Override
     public void validate(Object obj, Errors errors) {
-        // Address address = (Address) obj;
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, prefix + "city", "valid.address.city");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, prefix + "local", "valid.address.local");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors, prefix + "postCity", "valid.address.postCity");

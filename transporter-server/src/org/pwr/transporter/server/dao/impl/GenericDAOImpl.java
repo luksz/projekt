@@ -25,7 +25,7 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
  * <hr/>
  * 
  * @author x0r, copied from examples
- * @version 0.0.5
+ * @version 0.0.7
  */
 public abstract class GenericDAOImpl<T extends GenericEntity> implements GenericDAO<T> {
 
@@ -51,7 +51,11 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
 
     @SuppressWarnings("unchecked")
     public T getByID(Long id) {
-        return (T) getCurrentSession().get(clazz, id);
+        Session session = getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        T t = (T) getCurrentSession().get(clazz, id);
+        tx.commit();
+        return t;
     }
 
 
@@ -83,14 +87,19 @@ public abstract class GenericDAOImpl<T extends GenericEntity> implements Generic
 
 
     public Long insert(T entity) {
-        // TODO Save to database
-        return (Long) getCurrentSession().save(entity);
+        Session session = getCurrentSession();
+        Transaction tx = session.beginTransaction();
+        Long id = (Long) session.save(entity);
+        tx.commit();
+        return id;
     }
 
 
     public void update(T entity) {
-        // TODO Update entity on database
+        Session session = getCurrentSession();
+        Transaction tx = session.beginTransaction();
         getCurrentSession().update(entity);
+        tx.commit();
     }
 
 

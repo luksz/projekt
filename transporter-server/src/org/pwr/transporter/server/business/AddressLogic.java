@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.server.business;
 
 
@@ -7,6 +6,8 @@ import java.util.Map;
 
 import org.pwr.transporter.entity.base.Address;
 import org.pwr.transporter.server.dao.AddressDAO;
+import org.pwr.transporter.server.dao.CountryDAO;
+import org.pwr.transporter.server.dao.enums.AddrStreetPrefixDAO;
 
 
 
@@ -17,15 +18,29 @@ import org.pwr.transporter.server.dao.AddressDAO;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.4
  */
 public class AddressLogic {
 
     private AddressDAO addressDAO;
 
+    private CountryDAO countryDAO;
+
+    private AddrStreetPrefixDAO addrStreetPrefixDAO;
+
 
     public void setAddressDAO(AddressDAO addressDAO) {
         this.addressDAO = addressDAO;
+    }
+
+
+    public void setAddrStreetPrefixDAO(AddrStreetPrefixDAO addrStreetPrefixDAO) {
+        this.addrStreetPrefixDAO = addrStreetPrefixDAO;
+    }
+
+
+    public void setCountryDAO(CountryDAO countryDAO) {
+        this.countryDAO = countryDAO;
     }
 
 
@@ -45,6 +60,10 @@ public class AddressLogic {
 
 
     public Long insert(Address entity) {
+        entity.setCountry(countryDAO.getByID(Long.parseLong(entity.getCountryId())));
+        entity.setAddrStreetPrefix(addrStreetPrefixDAO.getByID(Long.parseLong(entity.getEnumAddrStreetPrefixId())));
+        String searchKey = entity.getCity() + " " + entity.getStreet();
+        entity.setSearchKey(searchKey);
         return this.addressDAO.insert(entity);
     }
 

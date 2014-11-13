@@ -65,6 +65,8 @@
 	
 	<bean id="addressLogic" class="org.pwr.transporter.server.business.AddressLogic">
 		<property name="addressDAO" ref="addressDAO" />
+		<property name="countryDAO" ref="countryDAO" />
+		<property name="addrStreetPrefixDAO" ref="addrStreetPrefixDAO" />
 	</bean>
 	
 	<bean id="addressService" class="org.pwr.transporter.server.web.services.AddressService" />

@@ -1,16 +1,30 @@
 @CHARSET "UTF-8";
 
+html, body {
+	height: 100%;
+}
+
 .error {
 	color: rgb(255,0,0);
 }
 
+.errorBc {
+	background: rgb(255,0,0);
+}
 .std table{
 	margin-left: auto;
 	margin-right: auto;
 }
 
-.body{
-	position:relative;
+.wrapper {
+	height:100%;
+	min-height:100%;
+	padding-bottom: 16em;
+}
+
+#body{
+	min-height:100%;
+	position: relative;
 }
 
 .login {
@@ -21,7 +35,7 @@
     width: 80%;
 }
 
-.tophead {
+#tophead {
 	margin-left:10%;
 	margin-right:10%;
 	background-color:rgb(120,255,150);
@@ -31,17 +45,19 @@
 
 .menu {
 	position: fixed;
+    display: block;
+    float: left;
 }
 
-.footer {
+#footer {
 	font-size:4pt;
 	text-align:center;
-	height:5%;
+	height:16pt;
 	width:80%;
-	margin-top:2%;
 	margin-left:10%;
 	margin-right:10%;
-	position:absolute; 
-	bottom:0;
+    position: fixed;
+    display: block;
+    bottom:0;
 	background:rgb(255,100,100);
 }

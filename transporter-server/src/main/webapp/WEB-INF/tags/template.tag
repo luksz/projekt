@@ -16,9 +16,10 @@
 		<link rel="stylesheet" type="text/css" media="all" href="${pageContext.request.contextPath}/resources/css/global.css"/>
 	</head>
 	<body>
-		<jsp:include page="/WEB-INF/jsp/template/tophead.jsp" />
-		<%-- <jsp:include page="/WEB-INF/jsp/template/sideBar.jsp" /> --%>
-		<div class="body"><jsp:doBody /></div>
-		<jsp:include page="/WEB-INF/jsp/template/footer.jsp" />
+	<jsp:include page="/WEB-INF/jsp/template/tophead.jsp" />
+	<div class="wrapper">
+		<div id="body"><jsp:doBody /></div>
+	</div>
+	<jsp:include page="/WEB-INF/jsp/template/footer.jsp" />
 	</body>
 </html>

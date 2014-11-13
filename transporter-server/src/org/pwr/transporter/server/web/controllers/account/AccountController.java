@@ -91,9 +91,8 @@ public class AccountController {
             model.addAttribute("addrStreetPrefixs", addrStreetPrefixs);
             model.addAttribute("countries", countires);
             model.addAttribute("customerAccountForm", accountForm);
+            LOGGER.debug(formBindeings.getFieldErrors().toString());
             return "/Views/log/register";
-        } else {
-
         }
 
         usersService.insert(accountForm);

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="headers.jsp" %>
-<div class="tophead">
+<div id="tophead">
 	<table>
 		<tr>
 			<td><h1>Panel</h1></td>
