@@ -16,7 +16,7 @@ import org.pwr.transporter.server.dao.UserRolesDAO;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.1
+ * @version 0.0.2
  */
 public class UserRolesLogic {
 
@@ -44,6 +44,7 @@ public class UserRolesLogic {
 
 
     public Long insert(UserRoles entity) {
+        entity.setSearchKey(entity.getRole().getName() + " " + entity.getUsers().getUsername());
         return this.userRolesDAO.insert(entity);
     }
 

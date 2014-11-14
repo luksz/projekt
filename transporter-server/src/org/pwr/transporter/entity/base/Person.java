@@ -1,4 +1,3 @@
-
 package org.pwr.transporter.entity.base;
 
 
@@ -47,7 +46,7 @@ public abstract class Person extends GenericEntity {
     @Column(name = "nip")
     private String nip;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "email")
     private String email;
 
 

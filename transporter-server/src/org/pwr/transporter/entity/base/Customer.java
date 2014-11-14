@@ -19,7 +19,7 @@ import javax.persistence.Table;
  * <hr/>
  * 
  * @author x0r
- * @version 0.0.5
+ * @version 0.0.6
  */
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)

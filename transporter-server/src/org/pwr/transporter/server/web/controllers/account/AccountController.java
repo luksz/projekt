@@ -95,7 +95,8 @@ public class AccountController {
             return "/Views/log/register";
         }
 
-        usersService.insert(accountForm);
+        Long id = usersService.insert(accountForm);
+        model.addAttribute("user", usersService.getByID(id));
 
         LOGGER.debug("Password: " + accountForm.getUser().getPassword());
         LOGGER.debug("Userame: " + accountForm.getUser().getUsername());

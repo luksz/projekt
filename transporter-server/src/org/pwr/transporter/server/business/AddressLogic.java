@@ -61,7 +61,7 @@ public class AddressLogic {
 
     public Long insert(Address entity) {
         entity.setCountry(countryDAO.getByID(Long.parseLong(entity.getCountryId())));
-        entity.setAddrStreetPrefix(addrStreetPrefixDAO.getByID(Long.parseLong(entity.getEnumAddrStreetPrefixId())));
+        entity.setAddrStreetPrefix(addrStreetPrefixDAO.getByID(Long.parseLong(entity.getAddrStreetPrefixId())));
         String searchKey = entity.getCity() + " " + entity.getStreet();
         entity.setSearchKey(searchKey);
         return this.addressDAO.insert(entity);

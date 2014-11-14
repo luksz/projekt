@@ -1,28 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/jsp/template/headers.jsp" %>
 <trans:template>
-<form action="/log/login.jsp" method=post>	
 	<div class="login">
+		<form:form action="/transporter-server/log/login" method="post" commandName="user">
 		<table>
 			<tr>
 				<td><h1> Login </h1></td>
 			</tr>
 			<tr>
-				<td>Użytkownik</td>
-				<td><input type="text" name="user" value=""></td>
+				<td><form:errors path="username" cssClass="error" /></td>
 			</tr>
 			<tr>
-				<td>Hasło</td>
-				<td><input type="password" name="password" value=""></td>
+				<td><form:label path="username">Użytkownik</form:label></td>
+				<td><form:input path="username"/></td>
+			</tr>
+			<tr>
+				<td><form:label path="password">Hasło</form:label></td>
+				<td><form:password path="password" /></td>
 			</tr>
 			<tr>
 				<td>
-					<input name="submit" type="submit" value="Zaloguj" />
-					<!-- <input name="register" type="button" value="Zarejestruj" onclick="redirect:/register"/> -->
+					<input type="submit" value="Zaloguj" />
 					<a href="/transporter-server/log/register"><button>Zarejestruj</button></a>
 				</td>
 			</tr>
 		</table>
+		</form:form>
 	</div>
-</form>
 </trans:template>

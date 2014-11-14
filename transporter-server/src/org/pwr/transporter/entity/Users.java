@@ -6,8 +6,12 @@ import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -26,7 +30,7 @@ import org.springframework.security.crypto.codec.Hex;
  * <hr/>
  * 
  * @author x0r
- * @version 0.0.5
+ * @version 0.0.9
  */
 @Entity
 @Table(name = NamesForHibernate.USERS)
@@ -52,7 +56,8 @@ public class Users extends GenericEntity {
     @Column(name = "salt", nullable = false)
     private String salt;
 
-    @ManyToMany(targetEntity = Role.class)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = NamesForHibernate.USER_ROLES_ID, nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = NamesForHibernate.ROLE_ID, nullable = false, updatable = false) })
     private Set<Role> roles;
 
     @Column(name = "email", nullable = false)
@@ -85,6 +90,7 @@ public class Users extends GenericEntity {
 
     public void setPassword(String password) {
         try {
+            LOGGER.debug("Setting password, username: " + username);
             MessageDigest digest = MessageDigest.getInstance("SHA-512");
             byte[] salt = nextSalt();
             this.salt = String.valueOf(Hex.encode(salt));
@@ -93,9 +99,9 @@ public class Users extends GenericEntity {
             System.arraycopy(username.getBytes(), 0, input, salt.length, username.getBytes().length);
             System.arraycopy(password.getBytes(), 0, input, salt.length + username.getBytes().length, password.getBytes().length);
             byte[] enPass = digest.digest(input);
-            this.password = Hex.encode(enPass).toString();
+            this.password = String.valueOf(Hex.encode(enPass));
         } catch ( NoSuchAlgorithmException e ) {
-            LOGGER.debug("Cannot encrypt password", e);
+            LOGGER.error("Cannot encrypt password", e);
         }
     }
 
@@ -152,5 +158,30 @@ public class Users extends GenericEntity {
 
     public void setEmplyee(Employee emplyee) {
         this.emplyee = emplyee;
+    }
+
+
+    public boolean checkPassword(String password) {
+        byte[] salt = Hex.decode(this.salt);
+        LOGGER.debug("Salts: \nold: \t" + this.salt + "\ndeco: \t" + String.valueOf(Hex.encode(salt)));
+        byte[] input = new byte[username.getBytes().length + password.getBytes().length + salt.length];
+        System.arraycopy(salt, 0, input, 0, salt.length);
+        System.arraycopy(username.getBytes(), 0, input, salt.length, username.getBytes().length);
+        System.arraycopy(password.getBytes(), 0, input, salt.length + username.getBytes().length, password.getBytes().length);
+        MessageDigest digest;
+        try {
+            digest = MessageDigest.getInstance("SHA-512");
+            byte[] enPass = digest.digest(input);
+            String passwordEn = String.valueOf(Hex.encode(enPass));
+            LOGGER.debug("Compare passwords: \nWrote: " + passwordEn + "n\nSawed: " + this.password + "\n"
+                    + passwordEn.trim().equals(this.password.trim()));
+            if( passwordEn.equals(this.password) ) {
+                LOGGER.debug("Matched");
+                return true;
+            }
+        } catch ( NoSuchAlgorithmException e ) {
+            LOGGER.error("Cannot encrypt password", e);
+        }
+        return false;
     }
 }

@@ -21,7 +21,7 @@ import org.pwr.transporter.entity.enums.base.AddrStreetPrefix;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.9
+ * @version 0.1.0
  */
 @Entity
 @Table(name = "address")
@@ -61,7 +61,7 @@ public class Address extends GenericEntity {
     private String countryId;
 
     @Transient
-    private String enumAddrStreetPrefixId;
+    private String addrStreetPrefixId;
 
 
     // *******************************************************************************************************************************
@@ -148,13 +148,12 @@ public class Address extends GenericEntity {
     }
 
 
-    public String getEnumAddrStreetPrefixId() {
-        return this.enumAddrStreetPrefixId;
+    public String getAddrStreetPrefixId() {
+        return this.addrStreetPrefixId;
     }
 
 
-    public void setEnumAddrStreetPrefixId(String enumAddrStreetPrefixId) {
-        this.enumAddrStreetPrefixId = enumAddrStreetPrefixId;
+    public void setAddrStreetPrefixId(String addrStreetPrefixId) {
+        this.addrStreetPrefixId = addrStreetPrefixId;
     }
-
 }

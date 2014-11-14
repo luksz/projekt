@@ -15,6 +15,7 @@ import org.pwr.transporter.server.business.UserRolesLogic;
 import org.pwr.transporter.server.business.UsersLogic;
 import org.pwr.transporter.server.dao.UsersDAO;
 import org.pwr.transporter.server.web.form.CustomerAccountForm;
+import org.pwr.transporter.server.web.form.UserForm;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -26,7 +27,7 @@ import org.springframework.beans.factory.annotation.Autowired;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.4
+ * @version 0.0.5
  */
 public class UsersService {
 
@@ -78,12 +79,12 @@ public class UsersService {
         Role customerRole = roleLogic.getByName("CUSTOMER");
         UserRoles userRoles = new UserRoles();
         userRoles.setRole(userRole);
-        userRoles.setUser(userL);
+        userRoles.setUsers(userL);
         userRolesLogic.insert(userRoles);
 
         UserRoles userRoles2 = new UserRoles();
-        userRoles.setRole(customerRole);
-        userRoles.setUser(userL);
+        userRoles2.setRole(customerRole);
+        userRoles2.setUsers(userL);
         userRolesLogic.insert(userRoles2);
         return userId;
     }
@@ -116,5 +117,10 @@ public class UsersService {
 
     public Users getByUserEmail(String email) {
         return this.usersLogic.getByUserEmail(email);
+    }
+
+
+    public boolean checkUserLogin(UserForm user) {
+        return this.usersLogic.checkUserLogin(user.getUsername(), user.getPassword());
     }
 }

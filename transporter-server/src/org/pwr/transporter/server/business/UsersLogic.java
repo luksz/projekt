@@ -1,10 +1,10 @@
-
 package org.pwr.transporter.server.business;
 
 
 import java.util.List;
 import java.util.Map;
 
+import org.apache.log4j.Logger;
 import org.pwr.transporter.entity.Users;
 import org.pwr.transporter.server.dao.UsersDAO;
 
@@ -17,9 +17,11 @@ import org.pwr.transporter.server.dao.UsersDAO;
  * <hr/>
  * 
  * @author W.S.
- * @version 0.0.2
+ * @version 0.0.3
  */
 public class UsersLogic {
+
+    private static Logger LOGGER = Logger.getLogger(UsersLogic.class);
 
     UsersDAO usersDAO;
 
@@ -40,6 +42,7 @@ public class UsersLogic {
 
 
     public Long insert(Users entity) {
+        entity.setSearchKey(entity.getUsername());
         return this.usersDAO.insert(entity);
     }
 
@@ -71,6 +74,29 @@ public class UsersLogic {
 
     public Users getByUserEmail(String email) {
         return this.usersDAO.getByUserEmail(email);
+    }
+
+
+    public boolean checkUserLogin(String username, String password) {
+        if( username == null || username.isEmpty() ) {
+            return false;
+        }
+        Users checkUser = this.usersDAO.getByUserName(username);
+        if( checkUser == null ) {
+            LOGGER.debug("User not found");
+            return false;
+        }
+        if( !checkUser.checkPassword(password) ) {
+            LOGGER.debug("Paswords not equals");
+            return false;
+        }
+        return true;
+    }
+
+
+    private Object password() {
+        // TODO Auto-generated method stub
+        return null;
     }
 
 }

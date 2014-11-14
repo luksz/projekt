@@ -1,8 +1,12 @@
 package org.pwr.transporter.entity;
 
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 
 
@@ -13,13 +17,11 @@ import javax.persistence.ManyToOne;
  * <hr/>
  * 
  * @author x0r
- * @version 0.0.3
+ * @version 0.0.4
  */
-// @Entity
-// @Table(name = NamesForHibernate.USERS_ROLES
-// , uniqueConstraints = { @UniqueConstraint(columnNames = { NamesForHibernate.ROLE_ID,
-// NamesForHibernate.USERS_ID }) }
-// )
+@Entity
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Table(name = NamesForHibernate.USER_ROLES)
 public class UserRoles extends GenericEntity {
 
     /**  */
@@ -31,7 +33,7 @@ public class UserRoles extends GenericEntity {
 
     @ManyToOne
     @JoinColumn(name = NamesForHibernate.USERS_ID, nullable = false)
-    private Users user;
+    private Users users;
 
     @ManyToOne
     @JoinColumn(name = NamesForHibernate.ROLE_ID, nullable = false)
@@ -42,8 +44,8 @@ public class UserRoles extends GenericEntity {
     // ****** FIELDS
     // *******************************************************************************************************************************
 
-    public Users getUser() {
-        return this.user;
+    public Users getUsers() {
+        return this.users;
     }
 
 
@@ -52,8 +54,8 @@ public class UserRoles extends GenericEntity {
     }
 
 
-    public void setUser(Users user) {
-        this.user = user;
+    public void setUsers(Users user) {
+        this.users = user;
     }
 
 

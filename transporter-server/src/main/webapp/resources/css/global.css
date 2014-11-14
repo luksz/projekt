@@ -10,6 +10,7 @@ html, body {
 
 .errorBc {
 	background: rgb(255,0,0);
+	color: rgb(0,0,0);
 }
 .std table{
 	margin-left: auto;
